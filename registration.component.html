@@ -1,0 +1,203 @@
+<div class="registerpage ">
+    <div class="navbar navbar-dark bg-primary">
+        <h4>Create Account</h4>
+    </div>
+    <div class="container">
+        <!-- <h2>Registration</h2> -->
+        <label></label>
+        <form name="form" (ngSubmit)="f.form.valid && register()" #f="ngForm" autocomplete="off" method="POST" novalidate>
+            <div class="row">
+                <div class="form-group col-md-3 col-sm-6 col-sm-push-2 col-md-push-0" [ngClass]="{ 'has-error': f.submitted && Username.errors?.required || Username.errors?.pattern}">
+                    <label class="form-labels-on-top" for="Username">Username
+                        <i style="color:red">*</i>
+                    </label>
+                </div>
+                <div class="form-group col-md-3 col-sm-6 col-sm-pull-1 col-md-push-0 col-md-pull-1" [ngClass]="{ 'has-error':(f.submitted && Username.errors?.required) || (f.submitted && Username.errors?.pattern)  || (!Username.errors?.required && (Username.errors?.pattern || Username.errors?.asyncInvalid)) }">
+                    <input type="text" class="form-control" name="Username" id='UserId' [(ngModel)]="model.Username" [iasync]="isUserNameUnique" #Username="ngModel" maxlength='50' pattern="^[a-zA-Z0-9\s]+$" [disabled]="disableUserDetail"
+                        required  />
+                    <div *ngIf="f.submitted && Username.errors?.required" class="help-block">Username is required</div>
+                    <div *ngIf="Username.errors?.pattern" class="help-block">Only alphabets and numbers are Allowed</div>
+                    <div *ngIf="Username.errors?.asyncInvalid" class="help-block">User already Exists</div>
+                </div>
+                <div class="form-group col-md-3 col-sm-6 col-sm-push-2 col-md-push-0" [ngClass]="{ 'has-error': f.submitted && UserCustomerName.errors?.required }">
+                    <label for="UserCustomerName">Company Name
+                        <i style="color:red">*</i>
+                    </label>
+                </div>
+                <div class="form-group col-md-3 col-sm-6 col-md-pull-1 col-sm-pull-1 col-md-push-0" [ngClass]="{ 'has-error': f.submitted && UserCustomerName.errors?.required }">
+                    <input type="text" class="form-control" name="UserCustomerName" id='UserCustomerId' [(ngModel)]="model.UserCustomerName" maxlength="50" #UserCustomerName="ngModel"
+                        [disabled]="disableUserDetail" required />
+                    <div *ngIf="f.submitted && UserCustomerName.errors?.required" class="help-block">Company Name is required</div>
+                </div>
+            </div>
+            <div class="row">
+                <div class="form-group col-md-3 col-sm-6 col-sm-push-2 col-md-push-0" [ngClass]="{ 'has-error': f.submitted && Password.errors?.required }">
+                    <label for="Password">Password
+                        <i style="color:red">*</i>
+                    </label>
+                </div>
+                <div class="form-group col-md-3 col-sm-6 col-md-pull-1 col-sm-pull-1 col-md-push-0" [ngClass]="{ 'has-error': f.submitted && Password.errors?.required }">
+                    <input type="password" class="form-control" name="Password" [(ngModel)]="model.Password" #Password="ngModel" maxlength="20" [disabled]="disableUserDetail"
+                        required />
+                    <div *ngIf="f.submitted && Password.errors?.required" class="help-block">Password is required</div>
+                </div>
+                <div class="form-group col-md-3 col-sm-6 col-sm-push-2 col-md-push-0" [ngClass]="{ 'has-error': f.submitted && repassword.errors?.required || repassword.errors?.equalTo }">
+                    <label for="repassword">Re-Enter Password
+                        <i style="color:red">*</i>
+                    </label>
+                </div>
+                <div class="form-group col-md-3 col-sm-6 col-md-pull-1 col-sm-pull-1 col-md-push-0" [ngClass]="{ 'has-error': (f.submitted && repassword.errors?.equalTo) || (f.submitted && repassword.errors?.required) || ( !repassword.errors?.required && (repassword?.touched && repassword.errors?.equalTo) )  }">
+                    <input type="password" class="form-control" name="repassword" [(ngModel)]="cPassword" #repassword="ngModel" maxlength="20" [equalTo]="Password"
+                        [disabled]="disableUserDetail" required />
+                    <div *ngIf="f.submitted && repassword.errors?.required" class="help-block">Re-enter Password is required</div>
+                    <div *ngIf=" repassword?.touched && repassword.errors?.equalTo && !repassword.errors?.required" class="help-block">Passwords does not match</div>
+                </div>
+            </div>
+
+            <div class="row">
+                <div class="form-group col-md-3 col-sm-6 col-sm-push-2 col-md-push-0" [ngClass]="{ 'has-error': f.submitted && UserAddress.errors?.required }">
+                    <label for="UserAddress">Address
+                        <i style="color:red">*</i>
+                    </label>
+                </div>
+                <div class="form-group col-md-3 col-sm-6 col-md-pull-1 col-sm-pull-1 col-md-push-0" [ngClass]="{ 'has-error': f.submitted && UserAddress.errors?.required }">
+                    <textarea rows="2" cols="40" class="form-control" name="UserAddress" [(ngModel)]="model.UserAddress" maxlength="255" #UserAddress="ngModel"
+                        [disabled]="disableUserDetail" required></textarea>
+                    <div *ngIf="f.submitted && UserAddress.errors?.required" class="help-block">Address is required</div>
+                </div>
+                <div class="form-group col-md-3 col-sm-6 col-sm-push-2 col-md-push-0 " [ngClass]="{ 'has-error': f.submitted && UserPhoneNo.errors?.required }">
+                    <label for="UserPhoneNo">Phone Number
+                        <i style="color:red">*</i>
+                    </label>
+                </div>
+                <!-- <div class="form-group col-md-3 col-sm-6 col-md-pull-1 col-sm-pull-1 col-md-push-0" [ngClass]="{ 'has-error': (f.submitted &&  UserPhoneNo.errors?.required) || (f.submitted && UserPhoneNo.errors?.pattern) || (f.submitted && UserPhoneNo.errors?.phone)  || (!UserPhoneNo.errors?.required && (UserPhoneNo?.touched && UserPhoneNo.errors?.phone) ) }">
+                    <input type="numeric" class="form-control" name="UserPhoneNo" [(ngModel)]="model.UserPhoneNo" #UserPhoneNo="ngModel" maxlength="20" pattern="^(\+\d{1,3}[- ]?)?\d{10,20}$"
+                        phone ="CN" [disabled]="disableUserDetail" required number />
+                    <div *ngIf=" UserPhoneNo?.touched && UserPhoneNo.errors?.pattern " class="help-block">Invalid Phone number </div>
+                    <div *ngIf="f.submitted && UserPhoneNo.errors?.required" class="help-block">Phone Number is required</div>
+                </div> -->
+                <div class="form-group col-md-3 col-sm-6 col-sm-pull-1 col-md-push-0 col-md-pull-1" [ngClass]="{ 'has-error':(f.submitted && UserPhoneNo.errors?.required) || (f.submitted && UserPhoneNo.errors?.pattern)  || (!UserPhoneNo.errors?.required && (UserPhoneNo.errors?.pattern || UserPhoneNo.errors?.phone)) }">
+                        <input type="numeric" class="form-control" name="UserPhoneNo" id='UserPhoneNo' [(ngModel)]="model.UserPhoneNo"  #UserPhoneNo="ngModel" maxlength='20' pattern="^(\(?\+?[0-9]*\)?)?[0-9_\- \(\)]*$" [disabled]="disableUserDetail"
+                            required  />
+                            <div *ngIf="f.submitted && UserPhoneNo.errors?.required" class="help-block">Phone number is required</div>
+                            <div *ngIf="UserPhoneNo.errors?.pattern" class="help-block">Only numbers are allowed</div>
+                    </div>
+            </div>
+
+            <div class="row">
+                <div class="form-group col-md-3 col-sm-6 col-sm-push-2 col-md-push-0" [ngClass]="{ 'has-error': f.submitted && !EmailID.valid   }">
+                    <label for="EmailID">Email ID
+                        <i style="color:red">*</i>
+                    </label>
+                </div>
+                <div class="form-group col-md-3 col-sm-6 col-md-pull-1 col-sm-pull-1 col-md-push-0 " [ngClass]="{ 'has-error': (f.submitted && EmailID.errors?.required) || (f.submitted &&  EmailID.errors?.email) || (EmailID?.touched && EmailID.errors?.email && !EmailID.errors?.required) }">
+                    <input type="email" class="form-control" name="EmailID" [(ngModel)]="model.EmailID" #EmailID="ngModel" ng-pattern="/^[^\s@]+@[^\s@]+\.[^\s@]{2,}$/"
+                        [disabled]="disableUserDetail" email required  />
+                    <div *ngIf="f.submitted && EmailID.errors?.required" class="help-block">Email ID is required</div>
+                    <div *ngIf="EmailID?.touched && EmailID.errors?.email && !EmailID.errors?.required" class="help-block">Invalid email id</div>
+                </div>
+                <div class="form-group col-sm-6 col-md-3 col-sm-6 col-sm-push-2 col-md-push-0" >
+                    <label for="UserCountryName">Country
+                        <i style="color:red">*</i>
+                    </label>
+                </div>
+                <div class="form-group col-sm-6 col-md-3  col-md-pull-1 col-sm-pull-1 col-md-push-0" [ngClass]="{ 'has-error': f.submitted && UserCountryName.errors?.required  }" >
+                    <angular2-multiselect class='form-control form-control-sm' name='UserCountryName' [data]="countries" [(ngModel)]="selectedCountry"
+                        #UserCountryName='ngModel' [settings]="countryDropdownSettings" (onSelect)="onItemSelect($event)" (onDeSelect)="OnItemDeSelect($event)"
+                        (onSelectAll)="onSelectAll($event)" (onDeSelectAll)="onDeSelectAll($event)" 
+                        required>
+                        <c-item>
+                            <ng-template let-item="item">
+                                <label style="font-size: 12px;">{{item.countryCode}} - </label>
+                                <label style="color: #333;font-size: 12px;">{{item.countryName}}</label>
+                            </ng-template>
+                        </c-item>
+                    </angular2-multiselect>
+                    <div *ngIf="f.submitted && UserCountryName.errors?.required" class="help-block">Country is required</div>
+                </div>
+            </div>
+
+            <div class="row">
+                <div class="form-group col-sm-6 col-md-3 col-sm-push-2 col-md-push-0" >
+                    <label for="currency">Currency
+                        <!-- <i style="color:red">*</i> -->
+                    </label>
+                </div>
+                <div class="form-group col-sm-6 col-md-3 col-md-pull-1 col-sm-pull-1 col-md-push-0">
+                    <angular2-multiselect class='form-control form-control-sm' name='PrefferedCurrency' [data]="currencies" [(ngModel)]="selectedCurrency"
+                        #PrefferedCurrency='ngModel' [settings]="dropdownSettings" (onSelect)="onItemSelect($event)" (onDeSelect)="OnItemDeSelect($event)"
+                        (onSelectAll)="onSelectAll($event)" (onDeSelectAll)="onDeSelectAll($event)" 
+                        >
+                        <c-item>
+                            <ng-template let-item="item">
+                                <label style="color: #333;min-width: 50px;font-size: 12px;">{{item.currencyCode}}</label>
+                                <label style="font-size: 12px;">{{item.currencyName}}</label>
+                            </ng-template>
+                        </c-item>
+                    </angular2-multiselect>
+                    <div *ngIf="f.submitted && PrefferedCurrency.errors?.required" class="help-block"> Currency is required</div>
+                </div>
+
+
+                <div class="form-group col-md-3 col-sm-6 col-sm-push-2 col-md-push-0" [ngClass]="{ 'has-error': f.submitted && UserCityName.errors?.required }">
+                    <label for="UserCityName">City
+                        <i style="color:red">*</i>
+                    </label>
+                </div>
+                <div class="form-group col-md-3 col-sm-6 col-md-pull-1 col-sm-pull-1 col-md-push-0" [ngClass]="{ 'has-error': f.submitted && UserCityName.errors?.required }">
+                    <input type="text" class="form-control" name="address" [(ngModel)]="model.UserCityName" #UserCityName="ngModel" maxlength="50" [disabled]="disableUserDetail"
+                        required />
+                    <div *ngIf="f.submitted && UserCityName.errors?.required" class="help-block">City is required</div>
+                </div>
+            </div>
+
+            <div class="row">
+                <div class="form-group col-md-3 col-sm-6 col-sm-push-2 col-md-push-0" [ngClass]="{ 'has-error': f.submitted && UserContactPerson.errors?.required }">
+                    <label for="UserContactPerson">Contact Person
+                        <i style="color:red">*</i>
+                    </label>
+                </div>
+                <div class="form-group col-md-3 col-sm-6 col-md-pull-1 col-sm-pull-1 col-md-push-0" [ngClass]="{ 'has-error': f.submitted && UserContactPerson.errors?.required }">
+                    <input type='text' class="form-control" name="UserContactPerson" [(ngModel)]="model.UserContactPerson" maxlength="50" #UserContactPerson="ngModel"
+                        [disabled]="disableUserDetail" required/>
+                    <div *ngIf="f.submitted && UserContactPerson.errors?.required" class="help-block">Contact Person is required</div>
+                </div>
+                <div class="form-group col-md-3 col-sm-6 col-sm-push-2 col-md-push-0" [ngClass]="{ 'has-error': f.submitted && UserComments.errors?.required }">
+                    <label for="UserComments">Comments</label>
+                </div>
+                <div class="form-group col-md-3 col-sm-6 col-md-pull-1 col-sm-pull-1 col-md-push-0" [ngClass]="{ 'has-error': f.submitted && UserComments.errors?.required }">
+                    <input type="text" class="form-control" name="UserComments" [(ngModel)]="model.UserComments" #UserComments="ngModel" maxlength="50" [disabled]="disableUserDetail"
+                    />
+
+                </div>
+            </div>
+            <label></label>
+            <div class='row'>
+                <div class="form-group " >
+                    <re-captcha class="col-md-2 col-sm-6 col-sm-push-2 col-md-push-0" name="recapcha" [(ngModel)]="model.recapcha" #recapcha="ngModel"  size="normal"
+                        site_key="6LeIxAcTAAAAAJcZVRqyHh71UMIEGNQ_MXjiZKhI" (captchaResponse)="handleCorrectCaptcha($event)"></re-captcha>
+                   
+                
+                    <span class="btn btn-link col-md-4 col-sm-4" (click)="resetCapcha()">RESET CAPTCHA<i ca></i></span>
+                </div>
+            </div>
+            <label></label>
+            <div class='row'>
+                <div class="form-group col-md-offset-5 col-sm-offset-4  ">
+                    <button [disabled]="disableUserDetail" class="btn btn-success">
+                        <i class="fa fa-floppy-o"></i> Send Request</button>
+                    <img *ngIf="loading" src="data:image/gif;base64,R0lGODlhEAAQAPIAAP///wAAAMLCwkJCQgAAAGJiYoKCgpKSkiH/C05FVFNDQVBFMi4wAwEAAAAh/hpDcmVhdGVkIHdpdGggYWpheGxvYWQuaW5mbwAh+QQJCgAAACwAAAAAEAAQAAADMwi63P4wyklrE2MIOggZnAdOmGYJRbExwroUmcG2LmDEwnHQLVsYOd2mBzkYDAdKa+dIAAAh+QQJCgAAACwAAAAAEAAQAAADNAi63P5OjCEgG4QMu7DmikRxQlFUYDEZIGBMRVsaqHwctXXf7WEYB4Ag1xjihkMZsiUkKhIAIfkECQoAAAAsAAAAABAAEAAAAzYIujIjK8pByJDMlFYvBoVjHA70GU7xSUJhmKtwHPAKzLO9HMaoKwJZ7Rf8AYPDDzKpZBqfvwQAIfkECQoAAAAsAAAAABAAEAAAAzMIumIlK8oyhpHsnFZfhYumCYUhDAQxRIdhHBGqRoKw0R8DYlJd8z0fMDgsGo/IpHI5TAAAIfkECQoAAAAsAAAAABAAEAAAAzIIunInK0rnZBTwGPNMgQwmdsNgXGJUlIWEuR5oWUIpz8pAEAMe6TwfwyYsGo/IpFKSAAAh+QQJCgAAACwAAAAAEAAQAAADMwi6IMKQORfjdOe82p4wGccc4CEuQradylesojEMBgsUc2G7sDX3lQGBMLAJibufbSlKAAAh+QQJCgAAACwAAAAAEAAQAAADMgi63P7wCRHZnFVdmgHu2nFwlWCI3WGc3TSWhUFGxTAUkGCbtgENBMJAEJsxgMLWzpEAACH5BAkKAAAALAAAAAAQABAAAAMyCLrc/jDKSatlQtScKdceCAjDII7HcQ4EMTCpyrCuUBjCYRgHVtqlAiB1YhiCnlsRkAAAOwAAAAAAAAAAAA=="
+                    />
+                
+                    <button [routerLink]="['/login']" class="btn btn-danger col-md-offset">
+                        <i class="fa fa-times-circle-o"></i> Cancel</button>
+                  
+                </div>
+                <label></label>
+               
+            </div>
+
+        </form>
+
+    </div>
+   </div>
