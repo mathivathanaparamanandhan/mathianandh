@@ -70,12 +70,12 @@
                         <i style="color:red">*</i>
                     </label>
                 </div>
-                <!-- <div class="form-group col-md-3 col-sm-6 col-md-pull-1 col-sm-pull-1 col-md-push-0" [ngClass]="{ 'has-error': (f.submitted &&  UserPhoneNo.errors?.required) || (f.submitted && UserPhoneNo.errors?.pattern) || (f.submitted && UserPhoneNo.errors?.phone)  || (!UserPhoneNo.errors?.required && (UserPhoneNo?.touched && UserPhoneNo.errors?.phone) ) }">
+                / <div class="form-group col-md-3 col-sm-6 col-md-pull-1 col-sm-pull-1 col-md-push-0" [ngClass]="{ 'has-error': (f.submitted &&  UserPhoneNo.errors?.required) || (f.submitted && UserPhoneNo.errors?.pattern) || (f.submitted && UserPhoneNo.errors?.phone)  || (!UserPhoneNo.errors?.required && (UserPhoneNo?.touched && UserPhoneNo.errors?.phone) ) }">
                     <input type="numeric" class="form-control" name="UserPhoneNo" [(ngModel)]="model.UserPhoneNo" #UserPhoneNo="ngModel" maxlength="20" pattern="^(\+\d{1,3}[- ]?)?\d{10,20}$"
                         phone ="CN" [disabled]="disableUserDetail" required number />
                     <div *ngIf=" UserPhoneNo?.touched && UserPhoneNo.errors?.pattern " class="help-block">Invalid Phone number </div>
                     <div *ngIf="f.submitted && UserPhoneNo.errors?.required" class="help-block">Phone Number is required</div>
-                </div> -->
+                </div> -
                 <div class="form-group col-md-3 col-sm-6 col-sm-pull-1 col-md-push-0 col-md-pull-1" [ngClass]="{ 'has-error':(f.submitted && UserPhoneNo.errors?.required) || (f.submitted && UserPhoneNo.errors?.pattern)  || (!UserPhoneNo.errors?.required && (UserPhoneNo.errors?.pattern || UserPhoneNo.errors?.phone)) }">
                         <input type="numeric" class="form-control" name="UserPhoneNo" id='UserPhoneNo' [(ngModel)]="model.UserPhoneNo"  #UserPhoneNo="ngModel" maxlength='20' pattern="^(\(?\+?[0-9]*\)?)?[0-9_\- \(\)]*$" [disabled]="disableUserDetail"
                             required  />
