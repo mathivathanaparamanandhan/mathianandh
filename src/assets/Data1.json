@@ -1,0 +1,66 @@
+[
+    {
+      "username": "deepi",
+      "custumername": "Dell",
+      "country": "hungary",
+      "status": "Approved",
+      "phoneno": 1234567890,
+      "email": "tellus.eu.augue@arcu.com"
+    },
+    {
+        "username": "Wing",
+        "custumername": "Dell",
+        "country": "hungary",
+        "status": "Rejected",
+        "phoneno": 1234567890,
+        "email": "tellus.eu.augue@arcu.com"
+      },
+      {
+        "username": "Wing",
+        "custumername": "Dell",
+        "country": "hungary",
+        "status": "Locked",
+        "phoneno": 1234567890,
+        "email": "tellus.eu.augue@arcu.com"
+      },
+      {
+        "username": "Wing",
+        "custumername": "Dell",
+        "country": "hungary",
+        "status": "pending",
+        "phoneno": 1234567890,
+        "email": "tellus.eu.augue@arcu.com"
+      },
+      {
+        "username": "Wing",
+        "custumername": "Dell",
+        "country": "hungary",
+        "status": "pending",
+        "phoneno": 1234567890,
+        "email": "tellus.eu.augue@arcu.com"
+      },
+      {
+        "username": "Wing",
+        "custumername": "Dell",
+        "country": "hungary",
+        "status": "Deactivated",
+        "phoneno": 1234567890,
+        "email": "tellus.eu.augue@arcu.com"
+      },
+      {
+        "username": "Wing",
+        "custumername": "Dell",
+        "country": "hungary",
+        "status": "pending",
+        "phoneno": 1234567890,
+        "email": "tellus.eu.augue@arcu.com"
+      },
+      {
+        "username": "Wing",
+        "custumername": "Dell",
+        "country": "hungary",
+        "status": "pending",
+        "phoneno": 1234567890,
+        "email": "tellus.eu.augue@arcu.com"
+      }
+    ]

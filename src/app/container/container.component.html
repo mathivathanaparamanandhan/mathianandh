@@ -1,0 +1,39 @@
+<div class="container-fluid">
+  <div class="row">
+    <div class="col-md-6 text-left">
+      <span class="float-md-left">
+        <strong>Displaying Available Containers</strong>
+      </span>
+    </div>
+    <div class="col-md-6 text-right">
+      <span class="float-md-right">View:</span>
+    </div>
+  </div>
+  <div class="row">
+    <app-filter-summary></app-filter-summary>
+  </div>
+  <div class="row">
+    <div class="row col-lg-12">
+      {{message}}
+    </div>
+    <div class="row">
+      <!-- <p *ngIf="container_detail.length === 0">No Products found for this category</p> -->
+      <div *ngFor="let product of container_detail" class="product-base">
+        <div class="col-lg-3  col-md-6 col-sm-12">
+          <div class="card">
+            <img class="card-img-top img-responsive center-block" alt="{{product.ContainerSizeCode}}" src="{{product.Image}}">
+            <div class="card-block">
+              <h4 class="card-title ">Size/Type: {{ product.ContainerSizeCode }}/{{ product.ContainerTypeCode }}</h4>
+              <p class="card-text">
+                Price: $ {{ product.SalePrice }} Availability:{{ product.AvailableUnits }} Color: {{ product.ColorCodeName}}
+              </p>
+            </div>
+            <div class="card-footer">
+              <img class="product-actionsButton img-responsive center-block" src="assets/images/cart2.jpg" alt="Add to cart">
+            </div>
+          </div>
+        </div>
+      </div>
+    </div>
+  </div>
+</div>

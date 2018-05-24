@@ -1,0 +1,380 @@
+<div *ngFor="let item of datas">
+    <div *ngIf="item.userID==this.prtluserid">
+  
+      <div class="well">
+        <h4 class="heading">Portal User Profile - Save</h4>
+        <span><label></label> </span>
+       <div class="row" style="margin: 5px;">
+          <div class="col col-lg-4 col-md-4 col-sm-6">
+            <div class="form-group">
+              <label class=" col-sm-4 col-lg-6 nopadding">User Name:</label>
+              <div class="col-sm-8 col-lg-6 ">
+                <p> {{item.username}}</p>
+              </div>
+            </div>
+          </div>
+          <div class="col col-lg-4 col-md-4 col-sm-6">
+            <div class="form-group">
+              <label class=" col-sm-4 col-lg-6 nopadding" for="email">Company Name:</label>
+              <div class="col-sm-8 col-lg-6">
+                <p>{{item.userCustomerName}} </p>
+              </div>
+            </div>
+          </div>
+          <div class="col col-lg-4 col-md-4 col-sm-6">
+            <div class="form-group">
+              <label class="col-sm-4 col-lg-6 nopadding" for="email">Phone No:</label>
+              <div class="col-sm-8 col-lg-6">
+                <p>{{item.userPhoneNo}}</p>
+              </div>
+            </div>
+         
+          </div>
+       
+          <div class="col col-lg-4 col-md-4 col-sm-6">
+            <div class="form-group">
+              <label class=" col-sm-4 col-lg-6 nopadding" for="email">Contact Person:</label>
+              <div class="col-sm-8 col-lg-6">
+                <p>{{item.userContactPerson}}</p>
+              </div>
+            </div>
+          </div>
+          <div class="col col-lg-4 col-md-4 col-sm-6">
+            <div class="form-group">
+              <label class="col-sm-4 col-lg-6 nopadding" for="email">Email:</label>
+              
+              <div class="form-group">
+              <div class="col-sm-8 col-lg-6" >
+                <!-- <p>{{item.emailID}}</p> -->
+                <textarea rows="1" cols="30"  [(ngModel)]="item.emailID"  readonly></textarea>
+              </div>
+            </div>
+          </div>
+          </div>
+          <div class="col col-lg-4 col-md-4 col-sm-6">
+            <div class="form-group">
+              <label class="col-sm-4 col-lg-6 nopadding" for="email">Comments:</label>
+              <div class="col-sm-8 col-lg-6">
+                <p>{{item.userComments}}</p>
+              </div>
+            </div>
+          </div>
+   
+        
+          <div class="col col-lg-4 col-md-4 col-sm-6">
+            <div class="form-group">
+              <label class="col-sm-4 col-lg-6 nopadding" for="email">Address:</label>
+              <div class="col-sm-8 col-lg-6">
+                <p> {{item.userAddress}}</p>
+              </div>
+            </div>
+          </div>
+          <div class="col col-lg-4 col-md-4 col-sm-6">
+            <div class="form-group">
+              <label class="col-sm-4 col-lg-6 nopadding" for="email">City:</label>
+              <div class="col-sm-8 col-lg-6">
+                <p>{{item.userCityName}}</p>
+              </div>
+            </div>
+          </div>
+          <div class="col col-lg-4 col-md-4 col-sm-6">
+            <div class="form-group">
+              <label class="col-sm-4 col-lg-6 nopadding" for="email">Country:</label>
+              <div class="form-group">
+              <div class="col-sm-8 col-lg-6">
+                <textarea rows="2" cols="20"  [(ngModel)]="country"  readonly>
+                </textarea>
+              </div>
+              </div>
+            </div>
+          </div>
+        </div>
+          <div class="row"></div>
+  
+   
+        <div class="priority-lists">
+          <div class="panel-group" id="accordion">
+            <div class="panel panel-default">
+              <div id="divCountryDetails" class="panel-heading collapsed" data-toggle="collapse" data-parent="#accordion" data-target="#waterMindDistrictMeteres">
+                <h2 class="panel-title accordion-toggle">
+                  <b>Add/Edit Country Details</b>
+                </h2>
+              </div>
+              <div id="waterMindDistrictMeteres" class="panel-collapse collapse" style="height: 0px;">
+                <div class="panel-body">
+                  <div class="table-responsive">
+                    <!--  -->
+                    <p-table #dt [columns]="cols" [value]="cars" [(selection)]="selectedCars1" [paginator]="true" [rows]="5" dataKey="cntrY_CD">
+                     
+                      <ng-template pTemplate="caption" >
+                         <!-- <div class="form-group">
+  
+                          <input type="text" class="form-control" pInputText size="50" placeholder="Global Filter" (input)="dt.filterGlobal($event.target.value, 'contains')"
+                            style="width:auto">
+                            <i class="glyphicon glyphicon-search form-control-feedback"></i>
+                        </div> -->
+                      
+                        <div class="row" style="padding: 0px;margin: 0px; text-align: right;">
+                          <div class="form-group col-md-push-6 col-md-6 col-lg-push-6 col-lg-6 col-sm-12 col-xs-12" style="padding-left: 0px; padding-right: 0px;     margin-bottom: 0px;">
+
+                              <input type="text" pInputText placeholder="Global Filter" (input)="dt.filterGlobal($event.target.value, 'contains')"
+                                  style="width:auto;  border: 1px solid lightgrey;">
+                              <i class="fa fa-search" style="margin:4px 4px 0 0"></i>
+                          </div>
+                          </div>
+                      </ng-template>
+                      <ng-template pTemplate="header" let-columns>
+                        <tr>
+                          <th style="width: 7em;padding: 14px;">
+                            Select<p-tableHeaderCheckbox></p-tableHeaderCheckbox>
+                          </th>
+                          <th *ngFor="let col of columns" [pSortableColumn]="col.field">
+                            <p-sortIcon [field]="col.field"></p-sortIcon>
+                            {{col.header}}
+                          </th>
+                        </tr>
+                      </ng-template>
+                      <ng-template pTemplate="body" let-rowData let-columns="columns">
+                        <tr [pSelectableRow]="rowData" style="background-color:white;color: black;">
+                          <td>
+                            <p-tableCheckbox [value]="rowData"></p-tableCheckbox>
+                          </td>
+                          <td *ngFor="let col of columns">
+                            {{rowData[col.field]}}
+                          </td>
+                        </tr>
+                      </ng-template>
+                      <ng-template pTemplate="paginatorright">
+                          {{cars.length}} Records Found
+                        </ng-template>
+                    </p-table>
+                  </div>
+  
+                </div>
+              </div>
+            </div>
+          </div>
+        </div>
+  
+        <div class="col-xs-12 col-sm-12 col-lg-12" id="Div14">
+        
+        </div>
+  
+        <form name="form" (ngSubmit)=" onSubmit(f) " #f="ngForm" autocomplete="off" novalidate style="margin: 10px;">
+          <div class="row">
+            <div class="col col-lg-4 col-md-4 col-sm-12">
+              <div class="form-group">
+                <label class="col-sm-6 col-lg-6 nopadding">Status *</label>
+                <div class="col-sm-6 col-lg-6 nopadding">
+  
+                  <div class="form-group" [ngClass]="{ 'has-error': f.submitted && userstatus.errors?.required  }">
+                    <angular2-multiselect class='form-control form-control-sm' name='userstatus' [data]="status" [(ngModel)]="model.selectStatus"
+                      #userstatus='ngModel' [settings]="dropdownStatus" (onSelect)="onStatusSelect(model.selectStatus)" required>
+                      <c-item>
+                        <ng-template let-item="item">
+                          <!-- <label style="font-size: 11px;">{{item.enM_CD}}  </label> -->
+                          <label style="color: #333;font-size: 11px;">{{item.enM_DSCRPTN_VC}}</label>
+                        </ng-template>
+                      </c-item>
+                    </angular2-multiselect>
+                    <div *ngIf="f.submitted && userstatus.errors?.required" class="help-block">Status is required</div>
+                  </div>
+                </div>
+              </div>
+            </div>
+            <div class="col col-lg-4 col-md-4 col-sm-12">
+                <div class="form-group">
+                  <label class="col-sm-6 col-lg-6 nopadding" for="email" >Mapping Customer Name *</label>
+                  <div class="col-sm-6 col-lg-6 nopadding">
+    
+                    <div class="form-group" [ngClass]="{ 'has-error': f.submitted && valdbit && UserCustomerName.errors?.required  }">
+                      <angular2-multiselect class='form-control form-control-sm' name='UserCustomerNam' [data]="customers" [(ngModel)]="model.selectedCustomer"
+                        #UserCustomerName='ngModel' [settings]="CustomerDropdownSettings" (onSelect)="onCstmrSelect(model.selectedCustomer)"   required>
+                        <c-item>
+                          <ng-template let-item="item">
+                            <label style="font-size: 11px;">{{item.cstmR_CD}} - </label>
+                            <label style="color: #333;font-size: 11px;">{{item.organisatioN_NAME}}</label>
+                          </ng-template>
+                        </c-item>
+                      </angular2-multiselect>
+                      <div *ngIf="f.submitted && valdbit && UserCustomerName.errors?.required" class="help-block">Customer Name is required</div>
+                    </div>
+                  </div>
+                </div>
+              </div>
+            <div class="col col-lg-4 col-md-4 col-sm-12">
+              <div class="form-group">
+                <label class="col-sm-6 col-lg-6 nopadding" for="email">Mapping City Name *</label>
+                <div class="col-sm-6 col-lg-6 nopadding">
+                  <div class="form-group" [ngClass]="{ 'has-error': f.submitted && valdbit && UserCityName.errors?.required  }">
+                    <angular2-multiselect class='form-control form-control-sm' name='UserCityName' [data]="cities" [(ngModel)]="model.selectedCity"
+                      #UserCityName='ngModel' [settings]="CityDropdownSettings" required>
+                      <c-item>
+                        <ng-template let-item="item">
+                          <label style="font-size: 11px;padding:0px;">{{item.ctY_CD}} - </label>
+                          <label style="color: #333;font-size: 11px;padding:0px;">{{item.ctY_NAM}}</label>
+                        </ng-template>
+                      </c-item>
+                    </angular2-multiselect>
+                    <div *ngIf="f.submitted &&  valdbit && UserCityName.errors?.required" class="help-block">City is required</div>
+                  </div>
+                </div>
+              </div>
+            </div>
+            </div>
+  
+            
+        
+         
+            <div class="row">
+            <div class="col col-lg-4 col-md-4 col-sm-12">
+              <div class="form-group">
+                <label class="col-sm-6 col-lg-6 nopadding" for="email">Organization Name *</label>
+                <div class="col-sm-6 col-lg-6 nopadding">
+  
+                  <div class="form-group" [ngClass]="{ 'has-error': f.submitted && valdbit && UserOrganizationName.errors?.required  }">
+                    <angular2-multiselect class='form-control form-control-sm' name='UserOrganizationName' [data]="orgs" [(ngModel)]="model.selectedOrganization"
+                      #UserOrganizationName='ngModel' [settings]="OrganizationDropdownSettings" (onSelect)="onOrgSelect(model.selectedOrganization)"
+                      required>
+                      <c-item>
+                        <ng-template let-item="item">
+                          <label style="font-size: 11px;">{{item.trdnG_PRTNR_TCD}} - </label>
+                          <label style="color: #333;font-size: 11px;">{{item.trdnG_PRTNR_NAM}}</label>
+                        </ng-template>
+                      </c-item>
+                    </angular2-multiselect>
+                    <div *ngIf="f.submitted && valdbit && UserOrganizationName.errors?.required" class="help-block">Organization Name is required</div>
+                  </div>
+                </div>
+              </div>
+            </div>
+            <div class="col col-lg-4 col-md-4 col-sm-12">
+              <div class="form-group">
+                <label class="col-sm-6 col-lg-6 nopadding" for="email">Mapping Bank Name *</label>
+                <div class="col-sm-6 col-lg-6 nopadding">
+  
+                  <div class="form-group" [ngClass]="{ 'has-error': f.submitted && valdbit && UserBankName.errors?.required  }">
+                    <angular2-multiselect class='form-control form-control-sm' name='UserBankName' [data]="banks" [(ngModel)]="model.selectedBank"
+                      #UserBankName='ngModel' [settings]="BankDropdownSettings" required>
+                      <c-item>
+                        <ng-template let-item="item">
+                          <label style="font-size: 11px;">{{item.bnK_CD}} - </label>
+                          <label style="color: #333;font-size: 11px;">{{item.bnK_NAM}}</label>
+                        </ng-template>
+                      </c-item>
+                    </angular2-multiselect>
+                    <div *ngIf="f.submitted && valdbit && UserBankName.errors?.required" class="help-block">Bank Name is required</div>
+                  </div>
+                </div>
+              </div>
+            </div>
+            <div class="col col-lg-4 col-md-4 col-sm-12">
+              <div class="form-group">
+                <label class="col-sm-6 col-lg-6 nopadding" for="email">Preferred Currency</label>
+                <div class="col-sm-6 col-lg-6 nopadding">
+  
+                  <div class="form-group" >
+                    <angular2-multiselect class='form-control form-control-sm' name='prefferedCurrency' [data]="currencies" [(ngModel)]="model.selectedCurrency"
+                      #prefferedCurrency='ngModel' [settings]="dropdownSettings">
+  
+                      <c-item>
+                        <ng-template let-item="item">
+                          <label style="color: #333;min-width: 50px;font-size: 11px;">{{item.currencyCode}}</label>
+                          <label style="font-size: 11px;">{{item.currencyName}}</label>
+                        </ng-template>
+                      </c-item>
+                    </angular2-multiselect>
+                               </div>
+                </div>
+              </div>
+            </div>
+          </div>
+  
+  
+          <div class="row">
+            <div class="col col-lg-4 col-md-4 col-sm-12">
+              <div class="form-group">
+                <label class="col-sm-6 col-lg-6 nopadding" for="email">Price Adjustment Value</label>
+             
+              <div class="form-group">
+                <div class="col-sm-6 col-lg-6 nopadding">
+  
+                  <!-- <div class="form-group" [ngClass]="{ 'has-error': Price.errors?.pattern }">-->
+                     <input type="text" class="form-control" name="country" [(ngModel)]="priceAdjustmntVal" #Price="ngModel" maxlength="5" pattern="^[-+]?[0-9]*\.?[0-9]+$" />
+                    <!-- <div *ngIf="Price.errors?.pattern" class="help-block">Numeric Only</div> -->
+  
+                  <!-- </div> --> 
+                </div>
+              </div>
+            </div>
+            </div>
+            <div class="col col-lg-4 col-md-4 col-sm-12">
+              <div class="form-group" [ngClass]="{ 'has-error': stsReq && Remarks.errors?.required  }">
+                <label class="col-sm-6 col-lg-6 nopadding" for="email">Remarks</label>
+              
+              <div class="form-group">
+                <div class="col-sm-6 col-lg-6 nopadding">
+                  <textarea class="form-control" cols="20" rows="1" name="Remarks" [(ngModel)]="userRemarks" #Remarks="ngModel" required></textarea>
+                  <div *ngIf="stsReq && Remarks.errors?.required" class="help-block">Reason required for Reject.</div>
+                  <!-- <textarea rows="2" cols="20" [(ngModel)]="userRemarks" ></textarea> -->
+                </div>
+              </div>
+            </div>
+            </div>
+          </div>
+        
+          <div class="row">
+            <div class="col col-lg-12 col-md-12">
+              <!-- <div class="form-group">
+                <label class="col-sm-2 col-lg-6">User Profile</label>
+              </div> -->
+            </div>
+            <div class="col col-lg-4 col-md-4 col-xs-4 col-sm-4">
+              <div class="form-group">
+                <label class="col-sm-6 col-lg-6 col-xs-6 nopadding">Buyer</label>
+               
+                <div class="col-sm-6 col-lg-6 col-xs-6 nopadding">
+                    <label></label>
+                  <!-- <input type="checkbox" name="Buyer" [(ngModel)]="model.Buyer" #Buyer="ngModel" [checked]="true"> -->
+  
+                  <input type="checkbox" id="Buyer" name="Buyers" [(ngModel)]="buyer" #Buyer="ngModel" checked="true">
+                  <!-- <input
+              class="form-control"
+              type="checkbox"
+              id="tag"
+              name="tagOptions"
+              [(ngModel)]="model.tagOptions" #tag="ngModel"
+            [checked]="true"> -->
+  
+                </div>
+              </div>
+            </div>
+            <div class="col col-lg-4 col-md-4 col-xs-4 col-sm-4">
+              <div class="form-group">
+                <label class="col-sm-6 col-lg-6 col-xs-7 nopadding">Lessee </label>
+                <div class="col-sm-6 col-lg-6 col-xs-5 nopadding">
+                  <label></label>
+                   
+                  <input type="checkbox" id="Buyer" name="Lessee" [(ngModel)]="lessee" [disabled]="rntlbit"  #Lessee="ngModel">
+                  <!-- <input type="checkbox" class="form-control" name="country" [(ngModel)]="model.Lessee" #Lessee="ngModel" maxlength="50" [disabled]="disableUserDetail"
+                 /> -->
+                
+                </div>
+              </div>
+            </div>
+          </div>
+          <label></label>
+          <div class="text-center foot">
+            <button [disabled]="disableUserDetail" class="btn btn-success">
+              <span class="glyphicon glyphicon-floppy-disk"></span> Save</button>
+            <button class="btn btn-danger" (click)="onCancel()" routerLink="/portaluserprofile">
+              <span class="glyphicon glyphicon-remove">
+              </span> Cancel</button>
+          </div>
+  
+        </form>
+  
+      </div>
+      <!--well -->
+    </div>
+  </div>

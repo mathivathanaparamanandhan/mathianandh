@@ -1,0 +1,92 @@
+<nav class="navbar navbar-default navbar-fixed-top">
+    <div class="navbar-header col-lg-12 col-sm-12 col-md-12 col-xs-9">
+      <a class="navbar-brand desktop top" routerLink="/">
+        <img src="assets/images/logo-multiboxx.png" alt="MultiBoxx">
+      </a>
+     <!-- <div class="mobile">
+        <div class="navbar-brand "> -->
+          <!-- <img class="brand-icon" src="assets/images/Logo.png" alt="MultiBoxx"> -->
+          <!-- <img src="assets/images/logo-multiboxx.png" alt="MultiBoxx">
+        </div>
+      </div>  -->
+    </div>
+    <div *ngIf="isLoggedIn" class="col-lg-12 col-sm-12 col-md-12 col-xs-12">
+      <div *ngIf="userrole" class="row icon">
+        <div class="welcome-text" style="width:200px;font-size: 15px;">
+          <div class="dropdown">
+            Welcome,
+            <span type="button" data-toggle="dropdown">{{username}}
+              <span class="caret"></span>
+            </span>
+            <ul class="dropdown-menu">
+              <li>
+                <a routerLink='/buycontainer'>Home</a>
+              </li>
+              <li>
+                <a (click)="openUserProfile()">Profile</a>
+              </li>
+              <li>
+                <a routerLink='/myorders'>My Orders</a>
+              </li>
+              <li>
+                <a routerLink='/cartDetails'>My Cart</a>
+              </li>
+              <li>
+                <a (click)="openModal(template)">Change Password</a>
+              </li>
+              <li>
+                <a (click)="logout()" routerLink="/">Logout</a>
+              </li>
+            </ul>
+          </div>
+        </div>
+      </div>
+      <div *ngIf="adminrole" class="row icon">
+        <div class="welcome-text">Welcome,
+          <strong> {{username}}</strong>
+          <i class="fa fa-lock" title="Change Password" (click)="openModal(template)"></i>
+          <i class="fa fa-sign-out" title="Logout" (click)="logout()" [routerLink]="['/']"></i>
+        </div>
+       
+      </div>
+    </div>
+  </nav>
+  <ng-template #template class="mobileview">
+    <div class="modal-header">
+  
+  
+      <button type="button" class="close" (click)="modalRef.hide()" (click)="clear(f)">&times;</button>
+      <h4 class="modal-title">{{title || 'Confirm'}}</h4>
+  
+      <!-- <span class="glyphicon glyphicon-remove close pull-right" (click)="modalRef.hide()" (click)="clear(f)"></span> -->
+    </div>
+    <div class="modal-body">
+      <form name="form" (ngSubmit)="f.form.valid && submitPassword(f)" #f="ngForm" novalidate>
+        <div class="form-group" [ngClass]="{ 'has-error': f.submitted && !oldpassword.valid }">
+          <label for="oldpassword">Old Password</label>
+          <input type="password" class="form-control" name="oldpassword" [(ngModel)]="model.oldpassword" #oldpassword="ngModel" required
+          />
+          <div *ngIf="f.submitted && !oldpassword.valid" class="help-block">Old Password is required</div>
+        </div>
+        <div class="form-group" [ngClass]="{ 'has-error': f.submitted && !newpassword.valid }">
+          <label for="newpassword">New Password</label>
+          <input type="password" class="form-control" name="newpassword" [(ngModel)]="model.newpassword" #newpassword="ngModel" required
+          />
+          <div *ngIf="f.submitted && !newpassword.valid" class="help-block">New Password is required</div>
+        </div>
+        <div class="form-group" [ngClass]="{ 'has-error': f.submitted && !confirmpassword.valid }">
+          <label for="confirmpassword">Confirm Password</label>
+          <input type="password" class="form-control" name="confirmpassword" [(ngModel)]="model.confirmpassword" #confirmpassword="ngModel"
+            [equalTo]="newpassword" required />
+          <div *ngIf="f.submitted && confirmpassword.errors?.required" class="help-block">Confirm Password is required</div>
+          <p *ngIf="f.submitted && confirmpassword.errors?.equalTo && !confirmpassword.errors?.required" class="help-block"> Confirm password does not match
+            <br>Please Re-enter the Confirm password</p>
+        </div>
+  
+        <button type="submit" class="btn btn-success">Submit</button>
+        <label></label>
+        <button type="button" class="btn btn-danger" (click)="modalRef.hide()" (click)="clear(f)">Cancel</button>
+      </form>
+    </div>
+  
+  </ng-template>

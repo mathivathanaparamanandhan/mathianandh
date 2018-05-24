@@ -1,0 +1,788 @@
+@import url("//netdna.bootstrapcdn.com/bootstrap/3.0.0/css/bootstrap-glyphicons.css");
+.head{
+  padding:5px;
+}
+.nopadding{
+  padding: 0px;
+
+}
+.btnmargin{
+  margin:2px;
+
+}
+div{
+  font-family:Helvetica,Arial,sans-serif;
+  
+}
+.pull-right {
+  margin-right: -20px;
+}
+.modal-body{
+  padding:32px;
+}
+span.pull-left{
+  margin-left: 5px;
+}
+
+.card-block{
+    text-align: left;
+    padding: 33px;
+    padding-bottom: 0px;
+    padding-top: 0px
+}
+
+.filter-summary {
+  margin: 10px 0 5px;
+  height: 20px; // This is a workaround for same the component template replacement
+  // problem IMO
+  .filter {
+    float: left;
+    .option {
+      display: block;
+      float: right;
+      position: relative;
+      background-color: #eaeaec;
+      text-transform: capitalize;
+      color: #3e4152;
+      padding: 0 20px 0 0;
+      margin: 0 5px 5px 0;
+      cursor: pointer;
+    }
+    .option:hover {
+      background: #d4d5d9;
+      // text-decoration: line-through;
+    }
+    .info{
+      color: dodgerblue;
+    }
+  }
+}
+.paginationdesktop{
+  margin-bottom: 60px;
+}
+//
+
+///////////////
+.paginationrow {
+  // height: 100px;
+  margin-right: 0px;
+
+}
+.paginationmobile {
+  font-size: 13px;
+  margin-top: 10px;
+  margin-bottom: 162px;
+  position: relative;
+  padding-right: 33px;
+}
+.container-fluid {
+  margin-top: 100px;
+}
+.searchbox {
+  background-color: #08486c;
+}
+.loading {
+  position: fixed;
+  top: 50%;
+  left: 55%;
+  width: 30em;
+  height: 18em;
+  margin-top: -9em; /*set to a negative number 1/2 of your height*/
+  margin-left: -15em; /*set to a negative number 1/2 of your width*/
+}
+.card {
+  padding: 20px 0px 20px 0px;
+}
+.card-img-top {
+  width: 224px;
+  height: 197px;
+  padding:20px;
+}
+.product-actionsButton {
+  width: 160px;
+  margin: 0 auto;
+}
+
+
+.mobileview {
+  display: none;
+}
+.modal-header {
+  background-color: #08486c;
+  color: azure;
+}
+.algcenter {
+  background-color: #08486c;
+  text-align: center;
+}
+.glyphicon-remove {
+  color: azure;
+}
+ng-template {
+  height: 100%;
+}
+
+.close {
+  opacity: 1 !important;
+}
+
+/*Check box*/
+input[type="checkbox"] {
+  position: absolute;
+  right: 9000px;
+}
+.label {
+  font-weight: 300;
+}
+.desktopdropdown-toggle {
+  width: 150px;
+  color: #2e6da4;
+  background-color: #fff;
+  border-color: #2e6da4;
+}
+.menuitem {
+  margin-left: 5px;
+}
+
+.desktopcaret {
+  margin-top: 9px;
+}
+.desktopdropdown-menu {
+  width: 150px;
+}
+
+input[type="checkbox"] + .label-text:before {
+  content: "\f096";
+  font-family: "FontAwesome";
+  text-transform: none;
+  line-height: 1;
+  -webkit-font-smoothing: antialiased;
+  // width: 1em;
+  display: inline-block;
+  margin-right: 20px;
+}
+
+.containercount {
+  color: #999;
+}
+
+input[type="checkbox"]:checked + .label-text:before {
+  content: "\f14a";
+  color: #08486c;
+  animation: effect 250ms ease-in;
+  font-weight: 300;
+}
+
+
+.optionsheading-desk {
+  font-weight: bold !important;
+  font-size: 1.6rem;
+}
+.optionlist-desk {
+  font-weight: normal !important;
+  font-size: 1.3rem !important;
+}
+.btn-mobile {
+  background-color: #fff;
+  border-color: #08486c;
+  color: #08486c;
+
+}
+// .container-count {
+//   font-size: 1.7rem;
+// }
+
+.sortby-list {
+  cursor: pointer;
+}
+
+.container-title {
+  font-weight: 2.8rem;
+  line-height: 2.4rem;
+  font-size: 2rem;
+  font-weight: 700;
+}
+// .row {
+//   margin-right: 0px;
+//  margin-left: 0px;
+// }
+@media only screen and (max-width: 768px) {
+  .heading{
+    position: absolute;
+    margin-top: 100px;;
+    width: 100%;
+  }
+  .head{
+    background-color:rgb(51,102,153);
+    color:white;
+    text-decoration: none;
+  }
+  .desktopview {
+    display: none;
+  }
+  .card-text{
+    font-size: 11px;
+  }
+  // .card-text.mobileview{
+  //   font-size: 13px;
+  // }
+  .float-md-right {
+    display: none;
+  }
+  .mobileview {
+    display: inline;
+    font-size: 1.6rem !important;
+  }
+
+  .loading {
+    position: fixed;
+    top: 50%;
+    left: 80%;
+    width: 30em;
+    height: 18em;
+    margin-top: -9em;
+    margin-left: -15em;
+  }
+  .container-fluid {
+    margin-top: 145px;
+    padding-left: 0;
+    padding-right: 0;
+    position: fixed;
+  // left: 10px;
+    overflow-x: hidden;
+    overflow-y: auto;
+  // padding: 8px 0;
+    max-height: 88%;
+  // top: 140px;
+    width: 100%
+  }
+  .row {
+     margin-right: 0px;
+    margin-left: 0px;
+}
+}
+.row.product {
+  margin-top: 36px;
+}
+//newly added css
+.side{
+  position: fixed;
+  max-height: 88%;
+  margin-bottom: 30px;
+  border: 1px solid transparent;
+  overflow-y: auto;
+  // overflow: hidden;
+  width: 227px;
+  padding-left: 40px;
+  padding-right: 40px;
+}
+
+
+.card-footer{
+  text-align:  center;
+}
+.space{
+  margin-bottom:20px;
+  padding: 0px;
+}
+
+
+.sidenav {
+  width: 17%;
+  position: fixed;
+  // z-index: 1;
+  // top: 20px;
+  left: 10px;
+  // background: #eee;
+  // overflow-x: hidden;
+  overflow-y: auto;
+  // padding: 8px 0;
+  max-height: 76%;
+  top: 140px;
+}
+.main {
+  // width:85%;
+ margin-left: 18%; /* Same width as the sidebar + left position in px */
+  // font-size: 28px; /* Increased text to enable scrolling */
+  padding: 0px 10px;
+  // margin-top: -24px;
+
+  position: fixed;
+  //  z-index: 1;
+  // top: 20px;
+  left: 10px;
+  // background: #eee;
+  // overflow-x: hidden;
+  overflow-x: hidden;
+  overflow-y: auto;
+  padding: 8px 0;
+  max-height: 88%;
+  top: 140px;
+    width: 81.5%;
+}
+
+#ex4::-webkit-scrollbar{
+  width:3px;
+  background-color:lightgray;
+}
+#ex4::-webkit-scrollbar-thumb{
+  background-color:gray;
+}
+
+
+@media screen and (max-height: 450px) {
+  .sidenav {padding-top: 15px;}
+}
+
+.filters{
+  // background-color: #C5C9B8;
+  //   width: 100%;
+  //   color: #333333;
+  //   height: auto;
+    margin: 0 auto;
+    // overflow: hidden;
+    padding: 10px 0;
+    align-items: center;
+    justify-content: space-around;
+    // display: flex;
+    // float: none;
+}
+
+
+
+//////////////////////////////////////////
+.overlay {
+  position: absolute;
+  top: 0;
+  left: 0;
+  width: 100%;
+  height: 100%;
+  // background: rgba(0, 0, 0, 0);
+  transition: background 0.5s ease;
+}
+
+.card:hover .overlay {
+  display: block;
+  // background: rgba(0, 0, 0, .3);
+}
+
+.button {
+  width: 76%;
+    left: 0;
+    display: -webkit-box;
+    display: -ms-flexbox;
+    display: flex;
+    opacity: 0;
+    transition: opacity .35s ease;
+    background-color: #336699;
+    text-align: center;
+    margin: 0 auto;
+}
+
+.button a {
+  display: flex;
+  width: 50px;
+  padding: 12px;
+  text-align: center;
+  color: white;
+  border: solid 2px rgb(51,102,153);
+  z-index: 1;
+  margin: 0 auto;
+  font-size: 12px;
+}
+.card{
+  padding:15px;
+  height:426px;
+}
+.card:hover .button {
+  opacity: 1;
+}
+.card:hover img {
+  -moz-transform: scale(1.1);
+  -webkit-transform: scale(1.1);
+  transform: scale(1.1);
+}
+
+.button a:hover{
+background-color:rgb(51,102,153);
+}
+
+@media only screen and (min-device-width: 768px) and (max-device-width: 1024px) {
+  /* STYLES GO HERE */
+  .desktopview{
+    display: inline;
+  }
+  // .glyphicon-th-large {
+  //   display: none;
+  // }
+  // .view {
+  //   display: none;
+  // }
+  .cardbig {
+    //ckground-color: aqua;
+    // width: 33.333%;
+    
+      width: 49.333%;
+      padding-left: 139px;
+      padding-right: 139px;
+ 
+  }
+  .cardsmall {
+    //background-color: red;
+    width: 25%;
+  }
+  .head {
+    padding: 5px;
+    width: 100%;
+  }
+  div {
+    font-family: Helvetica, Arial, sans-serif;
+  }
+
+  .paginationdesktop {
+    margin-bottom: 60px;
+  }
+  //
+
+  ///////////////
+  .paginationrow {
+    // height: 100px;
+    margin-right: 0px;
+  }
+  .paginationmobile {
+    font-size: 13px;
+    margin-bottom: 60px;
+  }
+  .container-fluid {
+    margin-top: 100px;
+  }
+
+  .loading {
+    position: fixed;
+    top: 50%;
+    left: 55%;
+    width: 30em;
+    height: 18em;
+    margin-top: -9em; /*set to a negative number 1/2 of your height*/
+    margin-left: -15em; /*set to a negative number 1/2 of your width*/
+  }
+  .card {
+    padding: 20px 0px 20px 0px;
+  }
+  .card-img-top {
+    width: 224px;
+    height: 197px;
+    padding: 20px;
+  }
+  //
+  .big {
+    display: none !important;
+  }
+  .small {
+    background-color: red;
+    display: none !important;
+  }
+  .mobileview {
+    display: none;
+  }
+  .modal-header {
+    background-color: #08486c;
+    color: azure;
+  }
+  .algcenter {
+    background-color: #08486c;
+    text-align: center;
+  }
+  .glyphicon-remove {
+    color: azure;
+  }
+  ng-template {
+    height: 100%;
+  }
+
+  .close {
+    opacity: none !important;
+  }
+
+  /*Check box*/
+  input[type="checkbox"] {
+    position: absolute;
+    right: 9000px;
+  }
+  .label {
+    font-weight: 300;
+  }
+  .desktopdropdown-toggle {
+    width: 150px;
+    color: #2e6da4;
+    background-color: #fff;
+    border-color: #2e6da4;
+  }
+  .menuitem {
+    margin-left: 5px;
+  }
+
+  .desktopcaret {
+    margin-top: 9px;
+  }
+  .desktopdropdown-menu {
+    width: 150px;
+  }
+
+  input[type="checkbox"] + .label-text:before {
+    content: "\f096";
+    font-family: "FontAwesome";
+    text-transform: none;
+    line-height: 1;
+    -webkit-font-smoothing: antialiased;
+    // width: 1em;
+    display: inline-block;
+    margin-right: 20px;
+  }
+
+  .containercount {
+    color: #999;
+  }
+
+  input[type="checkbox"]:checked + .label-text:before {
+    content: "\f14a";
+    color: #08486c;
+    animation: effect 250ms ease-in;
+    font-weight: 300;
+  }
+
+  .optionsheading-desk {
+    font-weight: bold !important;
+    font-size: 1.6rem;
+  }
+  .optionlist-desk {
+    font-weight: normal !important;
+    font-size: 1.3rem !important;
+  }
+  .btn-mobile {
+    background-color: #fff;
+    border-color: #08486c;
+    color: #08486c;
+  }
+  .container-count {
+    font-size: 1.7rem;
+  }
+
+  .sortby-list {
+    cursor: pointer;
+  }
+
+  .container-title {
+    font-weight: 2.8rem;
+    line-height: 2.4rem;
+    font-size: 2rem;
+    font-weight: 700;
+  }
+  // .row {
+  //   margin-right: 0px;
+  //  margin-left: 0px;
+  // }
+
+  .row.product {
+    margin-top: 36px;
+  }
+  //newly added css
+  .side {
+    position: fixed;
+    max-height: 88%;
+    margin-bottom: 30px;
+    border: 1px solid transparent;
+    overflow-y: auto;
+    // overflow: hidden;
+    width: 227px;
+    padding-left: 40px;
+    padding-right: 40px;
+  }
+
+  .card-block {
+    text-align: left;
+    // padding-left: 37px;
+    padding-right: 22px;
+  }
+
+
+
+
+
+
+
+  .card-footer {
+    text-align: center;
+  }
+  .space {
+    margin-bottom: 20px;
+    padding:0px;
+  }
+
+  .sidenav {
+    width: 17%;
+    position: fixed;
+    // z-index: 1;
+    // top: 20px;
+    left: 10px;
+    // background: #eee;
+    // overflow-x: hidden;
+    overflow-y: auto;
+    // padding: 8px 0;
+    max-height: 84%;
+    top: 140px;
+  }
+  .main {
+    // width:85%;
+    margin-left: 18%; /* Same width as the sidebar + left position in px */
+    // font-size: 28px; /* Increased text to enable scrolling */
+    padding: 0px 10px;
+    // margin-top: -24px;
+
+    position: fixed;
+    //  z-index: 1;
+    // top: 20px;
+    left: 10px;
+    // background: #eee;
+    // overflow-x: hidden;
+    overflow-x: hidden;
+    overflow-y: auto;
+    padding: 8px 0;
+    max-height: 88%;
+    top: 140px;
+    width: 81.5%;
+  }
+
+  #ex4::-webkit-scrollbar {
+    width: 3px;
+    background-color: lightgray;
+  }
+  #ex4::-webkit-scrollbar-thumb {
+    background-color: gray;
+  }
+
+  .filters {
+    // background-color: #C5C9B8;
+    //   width: 100%;
+    //   color: #333333;
+    //   height: auto;
+    margin: 0 auto;
+    // overflow: hidden;
+    padding: 10px 0;
+    align-items: center;
+    justify-content: space-around;
+    // display: flex;
+    // float: none;
+  }
+
+  //////////////////////////////////////////
+  .overlay {
+    position: absolute;
+    top: 0;
+    left: 0;
+    width: 100%;
+    height: 100%;
+    // background: rgba(0, 0, 0, 0);
+    transition: background 0.5s ease;
+  }
+
+  .card:hover .overlay {
+    display: block;
+    // background: rgba(0, 0, 0, .3);
+  }
+
+  .button {
+    width: 76%;
+    left: 0;
+    display: -webkit-box;
+    display: -ms-flexbox;
+    display: flex;
+    opacity: 0;
+    transition: opacity 0.35s ease;
+    background-color: #336699;
+    text-align: center;
+    margin: 0 auto;
+  }
+
+  .button a {
+    display: flex;
+    width: 50px;
+    padding: 12px;
+    text-align: center;
+    color: white;
+    border: solid 2px rgb(51, 102, 153);
+    z-index: 1;
+    margin: 0 auto;
+  }
+  .card {
+    padding: 15px;
+  }
+.button {
+    opacity: 1;
+    width:100px;
+  }
+
+  .button {
+    background-color: rgb(51, 102, 153);
+  }
+}
+@media only screen and (max-width: 768px) {
+.card-block{
+  padding-left: 0px;
+  padding-right: 0px;
+  
+}
+.card {
+  padding: 15px;
+  height: 314px;
+}
+}
+// Extra small devices (portrait phones, less than 576px)
+// No media query since this is the default in Bootstrap
+
+// Small devices (landscape phones, 576px and up)
+@media (min-width: 576px) {  }
+
+// Medium devices (tablets, 768px and up)
+/* Portrait and Landscape */
+@media only screen 
+  and (min-device-width: 768px) 
+  and (max-device-width: 1024px) 
+  and (-webkit-min-device-pixel-ratio: 1) {
+    .cardsmall {
+      width: 48.333%;
+      // width: 98%;
+    }
+    .cardbig {
+      // width: 33.333%;
+      width:  105.333%;
+      padding: 92px;
+      padding-bottom: 0px;
+      padding-top: 0px;
+      // padding-left: 139px;
+      // padding-right: 139px;
+    }
+}
+// @media (min-width: 768px) { 
+ 
+//  }
+
+// Large devices (desktops, 992px and up)
+// @media (min-width: 992px) { 
+
+// }
+
+// Extra large devices (large desktops, 1200px and up)
+@media (min-width: 1200px) {   .cardsmall {
+  width: 24%;
+  // width: 98%;
+}
+.cardbig {
+  // width: 33.333%;
+  width: 48.333%;
+  padding: 92px;
+  padding-bottom: 0px;
+  padding-top: 0px;
+  // padding-left: 139px;
+  // padding-right: 139px;
+} }

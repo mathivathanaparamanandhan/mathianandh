@@ -1,0 +1,236 @@
+<div class="desktopview">
+  <div class="navbar navbar-dark bg-primary" style="background-color: #337799">
+    <div class="row head">
+      <div class="col-xs-4 col-lg-8 col-sm-6 col-md-8">
+        <h4 class="pull-left header_cls">My Orders</h4>
+      </div>
+
+    </div>
+  </div>
+</div>
+<div class="main">
+  <div class="container col-sm-12">
+
+    <div class="_2S2DLT">
+
+      <div class="_1eq_ut">
+        <!-- <div class="navbar navbar-dark bg-primary">
+            <span class="_2F3FgY">
+              <span><h4>My Orders</h4></span>
+            </span>
+            </div> -->
+
+        <div *ngIf="Orders.length > 0" class="_1GRhLX _2wHLZw ">
+          <div class="row paginationrow paginationmobile" style="margin-bottom: 15px">
+            <!-- <div *ngIf="number_container != 0" class="pull-left"> -->
+            <pagination-controls (pageChange)="p = $event"></pagination-controls>
+            <!-- </div> -->
+          </div>
+          <div *ngFor="let item of Orders | paginate: { itemsPerPage: 4, currentPage: p, totalItems: totalItems}">
+            <div>
+              <div class="row _3l2sfs">
+                <div class="F4CVC3">
+                  <div class="row _1LTGeE">
+                    <div class="col-12-12">
+                      <div class="_1-SHG3">
+                        <div class="DgI5Zd">
+                          order no :{{ item.sl_offr_tcd }}
+                        </div>
+                      </div>
+                    </div>
+                    <!-- <div class="col-4-12 _1CwnjI">
+                    <div class="JfvmoN">
+
+                    </div>
+                  </div> -->
+                  </div>
+
+                  <div class="row haP8Uf">
+                    <div class="_3xiuDJ">
+                      <div class="row _23QCqI">
+                        <div class="col-lg-3 col-xs-3 _22pgKz">
+                          <div class="row" style="position: relative;">
+                            <div class="col-lg-4 col-xs-6 _2eFO7I">
+                              <!-- <div class="_3BTv9X"> -->
+                              <img class="_1Nyybr _30XEf0 _3BTv9X" alt="color code image" src="assets/images/1.jpg" onError="this.src='assets/images/2.jpg';">
+                              <!-- </div> -->
+                            </div>
+
+                          </div>
+                        </div>
+                        <div class="col-lg-9 col-xs-9 _52MoHd">
+                          <div class="row _1Yu3EO BoiqvK">
+                            <!-- <div class="col-lg-8 col-xs-3">
+                                    <a class="_2AkmmA row NPoy5u" target="_blank">
+                                      {{ item.custumername }}
+                                    </a>
+                                    <div class="row _3Vj7el">
+                                      <span class="_3PqwaQ">
+                                        <span class="_3Vj7el">Color:</span>
+                                        <span class="_14N9bh"> {{ item.custumername }} </span>
+                                      </span>
+                                    </div>
+                                    "₹601"
+                              
+                                <span class="_2aVS8x">Qnty</span>
+                                {{ item.phoneno }}
+                                  </div>
+                                  <div class="col-xs-3">
+
+                                  </div>
+                                  <div class="col-3-12 _3fG4KG">
+                                      "Invoice Date:15/08/17"
+                                    </div>
+                                    <div class="col-xs-3">
+                                    
+                          </div>  -->
+                            <div class="col-lg-6 col-xs-12">
+                              <div class="row">
+                                <div class="col-lg-6 col-xs-6">
+                                  Depot:
+                                </div>
+                                <div class="col-lg-6 col-xs-6">
+                                  {{ item.dpt_cd }}
+                                </div>
+                              </div>
+                              <div class="row">
+                                <div class="col-lg-6 col-xs-6">
+                                  Buy Qty:
+                                </div>
+                                <div class="col-lg-6 col-xs-6">
+                                  {{ item.no_of_unts }}
+                                </div>
+                              </div>
+
+
+                            </div>
+                            <div class="col-lg-6 col-xs-12">
+                              <!-- <div class="row">
+                                      <div class="col-lg-6 col-xs-6">
+                                        city:
+                                      </div>
+                                      <div class="col-lg-6 col-xs-6">
+                                          {{ item.custumername }}
+                                      </div>
+                                  </div> -->
+                              <div class="row">
+                                <div class="col-lg-6 col-xs-6">
+                                  sale Invoice:
+                                </div>
+                                <div class="col-lg-6 col-xs-6">
+                                  <!-- <a [attr.href]="'assets/SaleInvoice/'+item.invc_fle_pth" target="_self" download>
+                                            {{ item.sl_invc_tcd }}
+                                          </a> -->
+                                  <div target="_self" (click)="downloadFile(item.invc_fle_pth)" style="color:blue; cursor: pointer;">
+                                    {{ item.sl_invc_tcd }}
+                                  </div>
+
+                                  <!-- <a   class="btn-link" style="text-decoration: underline; color: blue;cursor: pointer;" target="_blank" (click)="downloadFile(item.invc_fle_pth)">   {{ item.sl_invc_tcd }} </a>  -->
+                                  <!-- <button (click)="downloadFile(item.saleinvoice)">remove</button> -->
+                                </div>
+                              </div>
+                              <div class="row">
+                                <div class="col-lg-6 col-xs-6">
+                                  sale release:
+                                </div>
+                                <div class="col-lg-6 col-xs-6">
+                                  <!-- <a [attr.href]="'assets/SaleInvoice/'+item.rls_rfrnc_path" target="_self" download>
+                                    {{ item.rlse_tcd }}
+                                  </a> -->
+                                  <!-- <a href="#">    {{ item.rlse_tcd }} </a>  -->
+                                  <div target="_self" (click)="downloadFile(item.rls_rfrnc_path)" style="color:blue; cursor: pointer;">
+                                    {{ item.rlse_tcd }}
+                                  </div>
+                                </div>
+                              </div>
+                            </div>
+                          </div>
+                        </div>
+                      </div>
+                    </div>
+                  </div>
+
+
+                  <div class="row cVUw-4">
+                    <div class="col-lg-6 col-md-6 col-xs-12 _1S28mS">
+                      <span>Order on :</span>
+                      {{item.sl_invc_dt_frmtd | date: 'dd/MMMM/yyyy'}}
+                    </div>
+                    <div class="col-lg-6 col-md-6 col-xs-12 Gp5Tnb">
+                      <span>Order total(</span>
+                      <span style="font-weight: 500;">{{ item.crrncy_cd}}</span>
+                      <span style="font-weight: 500;">
+                        ):{{item.amnt_invc_crrncy_nc}}
+                      </span>
+                    </div>
+                  </div>
+                </div>
+              </div>
+            </div>
+          </div>
+          <div class="row paginationrow paginationmobile">
+            <!-- <div *ngIf="number_container != 0" class="pull-left"> -->
+            <pagination-controls (pageChange)="p = $event"></pagination-controls>
+            <!-- </div> -->
+          </div>
+
+
+
+
+
+
+          <div>
+            <!-- <div class="row _3l2sfs">
+              <div class="F4CVC3">
+                <span>
+                  <h6>No Data Availble</h6>
+                </span>
+              </div>
+            </div> -->
+          </div>
+
+        </div>
+      </div>
+    </div>
+    <div *ngIf="Orders.length <= 0" class="_1zypWO">
+
+      <div>
+        <div class="row _3l2sfs">
+          <div class="F4CVC3">
+            <div class="row _1LTGeE">
+              <div class="col-12-12">
+                <div class="_1-SHG3">
+                  <span>My Orders</span>
+                </div>
+              </div>
+            </div>
+
+            <div class="row haP8Uf">
+
+              <div class="_3xiuDJ">
+                <div class="row _23QCqI">
+                  <div class="col-lg-12 col-xs-12 _44pgKz">
+                    <div class="row" style="position: relative;">
+                      <div class="col-lg-12 col-xs-12 _2eFO7I">
+                        <span style="padding-left: 500px;">No results to display</span>
+                      </div>
+
+                    </div>
+                  </div>
+                  <div class="col-lg-9 col-xs-9 _52MoHd">
+                    <div class="row _1Yu3EO BoiqvK">
+                    </div>
+                  </div>
+                </div>
+              </div>
+            </div>
+
+
+            <div class="row cVUw-4">
+            </div>
+          </div>
+        </div>
+      </div>
+    </div>
+  </div>
+</div>

@@ -1,0 +1,110 @@
+
+.example-container {
+    position: absolute;
+    bottom: 0;
+    left: 0;
+    right: 0;
+    top:99px;
+    background-color: white;
+    border-left: 5px solid #428bca;
+  }
+  @import '~@angular/material/prebuilt-themes/deeppurple-amber.css'; 
+  .glyphicon {
+    position: relative;
+    top: 1px;
+    display: inline-block;
+    font-family: 'Glyphicons Halflings';
+    font-style: normal;
+    font-weight: 400;
+    line-height: 1;
+   
+  }
+  .panel {
+    margin-bottom: 5px;
+    margin-right: 5px;
+   
+    background-color: #ffffff;
+    border-radius: 4px;
+  }
+ 
+  .formLabel{
+     font-size: 11pt;
+    font-weight: normal;
+    text-align: center;
+    color: black;
+  }
+ .group-sm{
+    height: 30px;
+    padding: 5px 10px;
+    font-size: 12px;
+    line-height: 1.5;
+}
+.mat-sidenav{
+    width: 200px;
+    border-right:5px solid #428bca;
+  }
+  .sharp {
+    border-radius:0px 50px 50px 0px;
+    width: 20px;
+    padding: 3px;
+    font-weight: bold;
+    border: none;
+    position: absolute;
+    margin:none;
+
+  }
+  .push{
+    margin-left: 80px;
+  }
+  .cross{
+    color: black;
+    font-weight: bold;
+    border-radius: 50px 0px 0px 50px;
+    margin-left: 160px;
+    border:none;
+    background-color:white;
+  }
+  .container {
+    padding-right: 15px;
+    padding-left: 15px;
+    margin-right: auto;
+    margin-left: auto;
+}
+  
+  @media screen and (max-width: 600px) {
+    .panel-heading{
+        background-color: #337ab7;
+        color: #fff;
+      }
+    }  
+     @media (min-width: 1200px)
+    {
+.push{
+  left: 25px;
+}
+    } 
+    @media only screen and (max-width: 600px) {
+     .push {
+        right:41px;
+    }  
+  }
+  .ui-datatable-data> tr> td {
+    white-space: nowrap;
+    overflow: hidden;
+    text-overflow: ellipsis;
+    max-width: 150px;
+  }
+  .h4, h4 {
+    font-size: 14px;
+}
+ .navbar {
+  position: relative;
+  min-height: 40px;
+  margin-bottom: 20px;
+  border: 1px solid transparent;
+}
+.bg-primary {
+  color: #fff;
+  
+  background-color: #336699;
+} 

@@ -1,0 +1,12 @@
+<div class="filters">
+  <div *ngFor="let filter of filters; let i = index">
+    <h4 class="heading">{{filter.filter_name}}</h4>
+    <div class="filter-box">
+      <div *ngFor="let option of filter.options; let i = index" class="filter">
+        <label class="vertical-filters-label common-customCheckbox" [class.selected]="cb1.checked">
+          <input type="checkbox" #cb1 value="{{option.name}}" (change)="logCheckbox(cb1)"> {{option.name}}
+        </label>
+      </div>
+    </div>
+  </div>
+</div>

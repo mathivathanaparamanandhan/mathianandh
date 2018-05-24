@@ -1,0 +1,146 @@
+<mat-sidenav-container class="example-container">
+    <mat-sidenav #sidenav [mode]="mode.value">
+        <p>
+            <a (click)="sidenav.toggle()" class="cross">
+                <span class="glyphicon glyphicon-backward"></span>
+            </a>
+        </p>
+
+        <div class="well">
+            <div class="well">
+                <p>
+                    <span class="panel panel-info panel-heading d-flex p-2">Overview</span>
+                </p>
+                <p>
+                    <a routerLink="/overview">Overview-Previous Purchase by users</a>
+                </p>
+            </div>
+            <div class="well">
+                <p>
+                    <span class="panel panel-info panel-heading">Settings</span>
+                </p>
+                <p>
+                    <a routerLink="/adminuserprofile">Admin User Profile</a>
+                </p>
+                <p>
+                    <a href="#">User Settings </a>
+                </p>
+            </div>
+            <div class="well">
+                <p>
+                    <span class="panel panel-default panel-heading d-flex p-3">Pending</span>
+                </p>
+                <p>
+                    <a class="login-link" routerLink="/portaluserprofile">Portal User Profile</a>
+                </p>
+            </div>
+        </div>
+
+
+    </mat-sidenav>
+
+
+
+
+    <mat-sidenav-content>
+        <div class="navbar navbar-dark bg-primary" style="position: absolute;width:100%">
+            <h4>Portal User Profile</h4>
+        </div>
+        <div class="panel" style="margin-top: 49px;">
+            <p>
+                <a (click)="sidenav.toggle()" class="btn btn-primary sharp">
+                    <span class="glyphicon glyphicon-forward"></span>
+                </a>
+            </p>
+        </div>
+
+        <div class="tab-content col-md-10">
+            <div class="tab-pane active" id="tab_a">
+                <form name="form" (ngSubmit)="f.form.valid && fetchData(f)  " #f="ngForm" autocomplete="off" method="POST" novalidate>
+                    <div class="row">
+                        <div class="classtab_a" id="tab_a">
+
+                            <div class="col-lg-1 col-xs-6 col-sm-2 col-xs-pull-1 col-lg-pull-0  col-sm-pull-0" [ngClass]="{ 'has-error': f.submitted && date3.errors?.required }">
+                                <label>Period From</label>
+                                <i style="color:red">*</i>
+                            </div>
+                            <div class="col-lg-3 col-xs-6 col-sm-4 col-xs-pull-3 col-lg-pull-0 col-lg-pull-0 col-sm-pull-0" [ngClass]="{ 'has-error': f.submitted && date3.errors?.required,'custom-class': f.submitted && date3.errors?.required }">
+                                <p-calendar #date3 [showIcon]="true" placeholder='MM/DD/YYYY' showButtonBar="true" [monthNavigator]="true" [yearNavigator]="true"
+                                    name="date3" yearRange="1991:2050" [(ngModel)]="model.date3" #date3="ngModel" required [ngClass]="{'custom-cl': f.submitted && date3.errors?.required }"></p-calendar>
+                                <div *ngIf="f.submitted && date3.errors?.required" class="help-block">From Date is required</div>
+                                <span style="margin-left:35px"></span>
+                            </div>
+
+                            <div class="col-lg-1 col-xs-6 col-sm-2  col-xs-pull-1 col-lg-pull-0 col-sm-pull-0" [ngClass]="{ 'has-error': f.submitted && date2.errors?.required }">
+                                <label>Period To</label>
+                                <i style="color:red">*</i>
+                            </div>
+                            <div class="col-lg-3 col-xs-6 col-sm-4  col-xs-pull-3 col-lg-pull-0 col-sm-pull-0" [ngClass]="{ 'has-error': f.submitted && date2.errors?.required }">
+                                <p-calendar #date2 [showIcon]="true" showButtonBar="true" placeholder='MM/DD/YYYY' [monthNavigator]="true" [yearNavigator]="true"
+                                    name="date2" yearRange="1991:2050" [(ngModel)]="model.date2" #date2="ngModel" required [ngClass]="{'custom-cl': f.submitted && date2.errors?.required }"></p-calendar>
+                                <div *ngIf="f.submitted && date2.errors?.required" class="help-block">To Date is required</div>
+                                <span style="margin-left:35px"></span>
+
+                            </div>
+                            <div class="col-lg-1 col-xs-6 col-sm-6">
+                                <button class="btn btn-primary">
+                                    <span class="glyphicon glyphicon-search"></span> Fetch</button>
+                                <span style="margin-left:55px"></span>
+                            </div>
+                            <div class="col-lg-1 col-xs-6 col-sm-6">
+                                <button class="btn btn-primary" (click)="clear()">
+                                    <span class="glyphicon glyphicon-erase"></span> Clear</button>
+                            </div>
+
+                        </div>
+                    </div>
+                </form>
+                <div class="table-responsive">
+                    <p-table #dt [columns]="cols" [responsive]="true" [value]="cars" selectionMode="single" [(selection)]="selectedCars1" [paginator]="true"
+                        paginatorPosition="both" [rows]="10" dataKey="sL_OFFR_TCD">
+                        <ng-template pTemplate="caption">
+                            <div class="row" style="padding: 0px;margin: 0px; text-align: right;">
+                                <div class="form-group col-md-push-6 col-md-6 col-lg-push-6 col-lg-6 col-sm-12 col-xs-12" style="padding-left: 0px; padding-right: 0px;     margin-bottom: 0px;">
+
+                                    <input type="text" pInputText placeholder="Global Filter" (input)="dt.filterGlobal($event.target.value, 'contains')" style="width:auto;  border: 1px solid lightgrey;">
+                                    <i class="fa fa-search" style="margin:4px 4px 0 0"></i>
+                                </div>
+                            </div>
+                        </ng-template>
+                        <ng-template pTemplate="header" let-columns>
+                            <tr>
+
+                                <th *ngFor="let col of columns" [pSortableColumn]="col.field">
+                                    <p-sortIcon [field]="col.field"></p-sortIcon>
+                                    {{col.header}}
+
+                                </th>
+                            </tr>
+                        </ng-template>
+                        <ng-template pTemplate="body" let-rowData let-columns="columns">
+                            <tr [pSelectableRow]="rowData">
+                                <td *ngFor="let col of columns" style="word-wrap:break-word;">
+                                    <span class="ui-column-title">{{col.header}}</span>
+
+                                    <span *ngIf="col.header==='Invoice'">
+                                        <div style="color:blue; cursor: pointer;" (click)="downloadFile(rowData.invC_FLE_PTH)" target="_self" download>{{rowData[col.field]}}</div>
+                                    </span>
+                                    <span *ngIf="col.header==='Sale Rel No'">
+                                        <div style="color:blue; cursor: pointer;" (click)="downloadFile(rowData.rlS_RFRNC_PATH)" target="_self" download>{{rowData[col.field]}}</div>
+                                    </span>
+                                    <span *ngIf="col.header!=='Invoice' && col.header!=='Sale Rel No' ">{{rowData[col.field]}}</span>
+                                </td>
+                            </tr>
+                        </ng-template>
+
+                    </p-table>
+                </div>
+
+                <!-- </div> -->
+
+
+            </div>
+        </div>
+
+    </mat-sidenav-content>
+</mat-sidenav-container>

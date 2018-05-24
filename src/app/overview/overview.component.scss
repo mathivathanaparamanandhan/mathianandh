@@ -1,0 +1,176 @@
+
+.example-container {
+  position: absolute;
+  bottom: 0;
+  left: 0;
+  right: 0;
+  top:99px;
+  background-color: white;
+  border-left: 5px solid #428bca;
+}
+  @import '~@angular/material/prebuilt-themes/deeppurple-amber.css';
+  
+  .glyphicon {
+    position: relative;
+    top: 1px;
+    display: inline-block;
+    font-family: 'Glyphicons Halflings';
+    font-style: normal;
+    font-weight: 400;
+    line-height: 1;
+  }
+  .panel {
+     margin-bottom: 5px;
+    margin-right: 5px;
+   background-color: #ffffff;
+    border-radius: 4px;
+  }
+  .example-radio-group {
+    display: block;
+    border: 1px solid #555;
+    margin: 20px;
+    padding: 10px;
+  }
+  .tab-content{
+    width: 96%;
+    margin: 10px;
+  }
+  .mat-sidenav{
+    width: 200px;
+    border-right:5px solid #428bca;
+  }
+  
+  .sharp {
+    border-radius:0px 50px 50px 0px;
+    width: 20px;
+    padding: 3px;
+    font-weight: bold;
+    border: none;
+    position: fixed;
+    margin:none;
+  }
+  .cross{
+    color: black;
+    font-weight: bold;
+    border-radius: 50px 0px 0px 50px;
+    margin-left: 160px;
+    border:none;
+    background-color:white;
+  }
+  .panel {
+    margin-bottom: 5px;
+    margin-right: 5px;
+   background-color: #ffffff;
+    border-radius: 4px;
+  }
+  
+  
+  @media screen and (max-width: 600px) {
+    table {
+      border: 0;
+    }
+    table caption {
+      font-size: 1.3em;
+    }
+    table thead {
+      border: none;
+      clip: rect(0 0 0 0);
+      height: 1px;
+      margin: -1px;
+      overflow: hidden;
+      padding: 0;
+      position: absolute;
+      width: 1px;
+    }
+    table tr {
+      border-bottom: 3px solid #ddd;
+      display: block;
+      margin-bottom: .625em;
+    }
+    table td {
+      border-bottom: 1px solid #ddd;
+      display: block;
+      font-size: .8em;
+      text-align: right;
+    }
+    table td:before {
+      /*
+      * aria-label has no advantage, it won't be read inside a table
+      content: attr(aria-label);
+      */
+      content: attr(data-label);
+      float: left;
+      font-weight: bold;
+      text-transform: uppercase;
+    }
+    table td:last-child {
+      border-bottom: 0;
+    }
+    .example-container {
+      top:60px;
+    }
+  }
+  .panel-heading{
+    background-color: #428bca;
+    color: #fff;
+  }
+  .custom {
+    color: #fff;
+    background-color: #337ab7;
+  }
+  .tabstatus {
+    color: #fff;
+    background-color: #337ab7;
+    border-radius: 4px;
+  }
+  @media screen and  (max-width: 1200px){
+.classtab_a{
+    padding-left: 30px;
+}
+  }
+  @media (min-width: 1200px){
+.col-lg-1 {
+    width: 10.333333%;
+}
+  }
+    @media only screen and (min-width: 320px) and (max-width: 568px)  {
+    .classtab_a{ 
+      padding-left: 11px;
+    padding-top: 17px;
+  }
+}  
+@media only screen and (min-width : 375px) and (max-width : 667px){
+  .classtab_a{ 
+    padding-left: 37px;
+  padding-top: 17px;
+}
+}
+@media screen and (max-width: 600px)
+{
+.example-container[_ngcontent-c3] {
+    top: 100px;
+}
+}
+.h4, h4 {
+  font-size: 14px;
+}
+.bg-primary {
+  color: #fff;
+  /* background-color: #337ab7; */
+  background-color: #336699;
+    padding-left: 15px;
+    /* padding-top: 5px; */
+    padding-bottom: 3px;
+}
+.navbar {
+  position: relative;
+  min-height: 30px;
+  margin-bottom: 20px;
+  border: 1px solid transparent;
+}
+.panel-heading {
+  padding: 10px 15px;
+  border-bottom: 1px solid transparent;
+  border-top-left-radius: 3px;
+  border-top-right-radius: 3px;
+}

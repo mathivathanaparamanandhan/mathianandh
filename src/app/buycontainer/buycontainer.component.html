@@ -1,0 +1,541 @@
+<div class="desktopview">
+  <div class="container-fluid">
+    <div class="row head" style="position:absolute; width:100%; background-color:rgb(51,102,153); color:white;">
+      <div class="col-sm-2 col-md-2 col-lg-2 container-count nopadding">
+        <span>Filters</span>
+        <a (click)="clearfilter()" class="clearfilter pull-right" style="cursor: pointer; color:white; padding-right: 12px;">Clear filters</a>
+      </div>
+      <div class="col-sm-4 col-md-4 col-lg-4">
+        <span>
+          <strong style="padding-left: 20px;"> {{ (container_detail | containerfilter:selectedfilter)?.length }}</strong> Results
+        </span>
+      </div>
+      <div class="col-sm-6 col-md-6 col-lg-6 text-right">
+        <span>Sort by </span>
+        <div class="btn-group" dropdown>
+          <button dropdownToggle type="button" class="btn desktopdropdown-toggle dropdown-toggle btn-sm">
+            <div *ngIf="sortfilterlist == null" class="pull-left"> Sort By </div>
+            <div *ngIf="sortfilterlist != null" class="pull-left"> {{sortfilterlist}} </div>
+            <span class="caret desktopcaret pull-right"></span>
+          </button>
+          <ul *dropdownMenu class="desktopdropdown-menu dropdown-menu" role="menu" style="background-color:rgb(51,102,153)">
+            <div *ngFor="let item of dropdownList; let i =index">
+              <li class="menuitem sortby-list" role="menuitem" #menuitem (click)="sortfilter(item.itemName, $event)">
+                {{item.itemName}}
+              </li>
+            </div>
+          </ul>
+        </div>
+        <span class="view"> View </span>
+        <span (click)="set()" class="glyphicon glyphicon-th "></span>
+        <span (click)="get()" class="glyphicon glyphicon-th-large "></span>
+      </div>
+    </div>
+    <div class="row">
+      <div class="col-lg-2 col-md-2 col-sm-3">
+        <!-- <div class="row"> -->
+        <div class="sidenav" id="ex4">
+          <div class="filters">
+            <div class="filter-box">
+              <div class="headingfirst" style="display: block;background-color: #0bb2ef; max-height: 20px; color: aliceblue;">
+                Location
+              </div>
+              <span class="optionsheading-desk">Country</span>
+              <div *ngFor="let option of cntyLst | slice:0:cntyshowmorecount ; let j =index">
+                <div class="form-check vertical-filters-label common-customCheckbox" [class.selected]="cb1.checked">
+                  <label>
+                    <input class="checkbox-success" type="checkbox" #cb1 value="{{option.fltNm}}" (change)="slectCkBox('Country',option.fltNm,cb1)"
+                      [checked]="sldCnty.indexOf(option.fltNm)>-1">
+                    <span class="optionlist-desk label-text">{{option.fltNm | orderBy }}</span>
+                    <span class="label-text optionlist-desk">({{option.avlUnt | orderBy}})</span>
+                  </label>
+                </div>
+              </div>
+
+              <!-- <span class="label-text optionlist-desk">{{cntyLst.length}}</span> -->
+              <div *ngIf="cntyLst.length >2">
+                <div *ngIf="cntyshowstatus">
+                  <a (click)="showmore('Country',cntyLst.length)">
+                    <span class="glyphicon glyphicon-menu-down"></span>Show more</a>
+                </div>
+                <div #ng *ngIf="!cntyshowstatus">
+                  <a (click)="showless('Country')">
+                    <span class="glyphicon glyphicon-menu-up"></span>Show less</a>
+                </div>
+              </div>
+              <br>
+              <hr>
+              <span class="optionsheading-desk">City</span>
+
+              <div *ngFor="let option of cityLst| slice:0:cityshowmorecount  ; let j =index">
+                <div>
+                  <div class="form-check vertical-filters-label common-customCheckbox" [class.selected]="cb2.checked">
+                    <label>
+
+                      <input class="checkbox-success" type="checkbox" #cb2 value="{{option.fltNm}}" id="chk {{option.fltNm}}" (change)="slectCkBox('City',option.fltNm,cb2)"
+                        [checked]="sldCity.indexOf(option.fltNm)>-1">
+                      <span class="optionlist-desk label-text">{{option.fltNm | orderBy }}</span>
+                      <span class="label-text optionlist-desk">({{option.avlUnt | orderBy}})</span>
+
+                    </label>
+                  </div>
+                </div>
+              </div>
+              <!-- <span class="label-text optionlist-desk">{{cityLst.length}}</span> -->
+              <div *ngIf="cityLst.length >2">
+                <div *ngIf="cityshowstatus">
+                  <a (click)="showmore('City',cityLst.length)">
+                    <span class="glyphicon glyphicon-menu-down"></span>Show more</a>
+                </div>
+                <div #ng *ngIf="!cityshowstatus">
+                  <a (click)="showless('City')">
+                    <span class="glyphicon glyphicon-menu-up"></span>Show less</a>
+                </div>
+              </div>
+              <br>
+              <hr>
+              <span class="optionsheading-desk">Depot</span>
+
+              <div *ngFor="let option of dptLst| slice:0:dptshowmorecount  ; let j =index">
+                <div class="form-check vertical-filters-label common-customCheckbox" [class.selected]="cb3.checked">
+                  <label>
+                    <input class="checkbox-success" type="checkbox" #cb3 value="{{option.fltNm}}" (change)="slectCkBox('Depot',option.fltNm,cb3)"
+                      [checked]="sldDpt.indexOf(option.fltNm)>-1">
+                    <span class="optionlist-desk label-text">{{option.fltNm | orderBy }}</span>
+                    <span class="label-text optionlist-desk">({{option.avlUnt | orderBy}})</span>
+                  </label>
+                </div>
+              </div>
+
+              <!-- <span class="label-text optionlist-desk">{{dptLst.length}}</span> -->
+              <div *ngIf="dptLst.length >2">
+                <div *ngIf="dptshowstatus">
+                  <a (click)="showmore('Depot',dptLst.length)">
+                    <span class="glyphicon glyphicon-menu-down"></span>Show more</a>
+                </div>
+                <div #ng *ngIf="!dptshowstatus">
+                  <a (click)="showless('Depot')">
+                    <span class="glyphicon glyphicon-menu-up"></span>Show less</a>
+                </div>
+              </div>
+              <br>
+              <hr>
+            </div>
+            <!-- </div> -->
+            <!-- </div> -->
+            <!-- <div class="row">
+            <div class="headingtwo" style="display: block;background-color: #336699; color: aliceblue; max-height: 20px;">
+              Specification
+            </div>
+          </div>
+          <div class="row">
+            <div class="sidenavtwo" id="ex4">
+              <div class="filters">
+                <div class="filter-box"> -->
+            <div class="headingtwo" style="display: block;background-color: #0bb2ef; color: aliceblue; max-height: 20px;">
+              Specification
+            </div>
+            <span class="optionsheading-desk">Sale Condition</span>
+
+            <div *ngFor="let option of slcndLst| slice:0:slcndshowmorecount  ; let j =index">
+              <div class="form-check vertical-filters-label common-customCheckbox" [class.selected]="cb4.checked">
+                <label>
+                  <input class="checkbox-success" type="checkbox" #cb4 value="{{option.fltNm}}" (change)="slectCkBox('SaleCondition',option.fltNm,cb4)"
+                    [checked]="sldSlCnd.indexOf(option.fltNm)>-1">
+                  <span class="optionlist-desk label-text">{{option.fltNm | orderBy }}</span>
+                  <span class="label-text optionlist-desk">({{option.avlUnt | orderBy}})</span>
+                </label>
+              </div>
+            </div>
+            <div *ngIf="slcndLst.length >2">
+              <div *ngIf="slcndshowstatus">
+                <a (click)="showmore('Sale Condition',slcndLst.length)">
+                  <span class="glyphicon glyphicon-menu-down"></span>Show more</a>
+              </div>
+              <div #ng *ngIf="!slcndshowstatus">
+                <a (click)="showless('Sale Condition')">
+                  <span class="glyphicon glyphicon-menu-up"></span>Show less</a>
+              </div>
+            </div>
+            <br>
+            <hr>
+            <span class="optionsheading-desk">Container Type</span>
+
+            <div *ngFor="let option of cnttypLst| slice:0:cnttypshowmorecount  ; let j =index">
+              <div class="form-check vertical-filters-label common-customCheckbox" [class.selected]="cb5.checked">
+                <label>
+                  <input class="checkbox-success" type="checkbox" #cb5 value="{{option.fltNm}}" (change)="slectCkBox('ContainerType',option.fltNm,cb5)"
+                    [checked]="sldCnttype.indexOf(option.fltNm)>-1">
+                  <span class="optionlist-desk label-text">{{option.fltNm | orderBy }}</span>
+                  <span class="label-text optionlist-desk">({{option.avlUnt | orderBy}})</span>
+                </label>
+              </div>
+            </div>
+            <div *ngIf="cnttypLst.length >2">
+              <div *ngIf="cnttypshowstatus">
+                <a (click)="showmore('Container Type',cnttypLst.length)">
+                  <span class="glyphicon glyphicon-menu-down"></span>Show more</a>
+              </div>
+              <div #ng *ngIf="!cnttypshowstatus">
+                <a (click)="showless('Container Type')">
+                  <span class="glyphicon glyphicon-menu-up"></span>Show less</a>
+              </div>
+            </div>
+            <br>
+            <hr>
+            <span class="optionsheading-desk">Container Size</span>
+
+            <div *ngFor="let option of cntszLst| slice:0:cntszshowmorecount  ; let j =index">
+              <div class="form-check vertical-filters-label common-customCheckbox" [class.selected]="cb6.checked">
+                <label>
+                  <input class="checkbox-success" type="checkbox" #cb6 value="{{option.fltNm}}" (change)="slectCkBox('ContainerSize',option.fltNm,cb6)"
+                    [checked]="sldCntsize.indexOf(option.fltNm)>-1">
+                  <span class="optionlist-desk label-text">{{option.fltNm | orderBy }}</span>
+                  <span class="label-text optionlist-desk">({{option.avlUnt | orderBy}})</span>
+                </label>
+              </div>
+            </div>
+            <div *ngIf="cntszLst.length >2">
+              <div *ngIf="cntszhowstatus">
+                <a (click)="showmore('Container Size',cntszLst.length)">
+                  <span class="glyphicon glyphicon-menu-down"></span>Show more</a>
+              </div>
+              <div #ng *ngIf="!cntszshowstatus">
+                <a (click)="showless('Container Size')">
+                  <span class="glyphicon glyphicon-menu-up"></span>Show less</a>
+              </div>
+            </div>
+            <br>
+            <hr>
+            <span class="optionsheading-desk">Colour Code</span>
+
+            <div *ngFor="let option of clrcdLst| slice:0:cntcdshowmorecount  ; let j =index">
+              <div class="form-check vertical-filters-label common-customCheckbox" [class.selected]="cb7.checked">
+                <label>
+                  <input class="checkbox-success" type="checkbox" #cb7 value="{{option.fltNm}}" (change)="slectCkBox('ColourCode',option.fltNm,cb7)"
+                    [checked]="sldClrcd.indexOf(option.fltNm)>-1">
+                  <span class="optionlist-desk label-text">{{option.fltNm | orderBy }}</span>
+                  <span class="label-text optionlist-desk">({{option.avlUnt | orderBy}})</span>
+                </label>
+              </div>
+            </div>
+            <div *ngIf="clrcdLst.length >2">
+              <div *ngIf="cntcdshowstatus">
+                <a (click)="showmore('Colour Code',clrcdLst.length)">
+                  <span class="glyphicon glyphicon-menu-down"></span>Show more</a>
+              </div>
+              <div #ng *ngIf="!cntcdshowstatus">
+                <a (click)="showless('Colour Code')">
+                  <span class="glyphicon glyphicon-menu-up"></span>Show less</a>
+              </div>
+            </div>
+            <br>
+            <hr>
+            <span class="optionsheading-desk">Price</span>
+
+            <div *ngFor="let option of Priceval| slice:0:prcshowmorecount; let j =index">
+              <div class="form-check vertical-filters-label common-customCheckbox" [class.selected]="cb8.checked">
+                <label>
+                  <input class="checkbox-success" type="checkbox" #cb8 value="{{option.itemName}}">
+                  <!-- <span class="optionlist-desk label-text">{{option.fltNm | orderBy }}</span> -->
+                  <span class="optionlist-desk label-text">{{option.itemName }}</span>
+                  <!-- <span class="label-text optionlist-desk">({{option.avlUnt | orderBy}})</span> -->
+                </label>
+              </div>
+            </div>
+            <!-- <div *ngFor="let option of pceLst| slice:0:prcshowmorecount; let j =index">
+                <div class="form-check vertical-filters-label common-customCheckbox" [class.selected]="cb8.checked">
+                  <label>
+                    <input class="checkbox-success" type="checkbox" #cb8 value="{{option.fltNm}}" (change)="slectCkBox('Price',option.fltNm,cb8)"
+                      [checked]=" sldPrc.indexOf(option.fltNm)>-1">
+                    <span class="optionlist-desk label-text">{{option.fltNm | orderBy }}</span>
+                    <span class="optionlist-desk label-text">{{Priceval[0].itemName }}</span>
+                    <span class="label-text optionlist-desk">({{option.avlUnt | orderBy}})</span>
+                  </label>
+                </div>
+              </div> -->
+            <div *ngIf="pceLst.length >2">
+              <div *ngIf="prceshowstatus">
+                <a (click)="showmore('Price',pceLst.length)">
+                  <span class="glyphicon glyphicon-menu-down"></span>Show more</a>
+              </div>
+              <div #ng *ngIf="!prceshowstatus">
+                <a (click)="showless('Price')">
+                  <span class="glyphicon glyphicon-menu-up"></span>Show less</a>
+              </div>
+            </div>
+            <br>
+          </div>
+        </div>
+      </div>
+    </div>
+    <div class="col-lg-10 col-md-10 col-sm-9">
+      <div class="main">
+        <div *ngIf="container_detail.length == 0">
+          <div class="" style="font-size:50px;"> No containers available</div>
+        </div>
+        <div class="row paginationrow">
+          <!-- <div class="row paginationrow paginationdesktop"> -->
+          <div *ngIf="number_container != 0" class="text-right">
+            <pagination-controls (pageChange)="p = $event"></pagination-controls>
+          </div>
+        </div>
+        <div class="row">
+          <div *ngFor="let product of  container_detail | orderBy: orderby:orderstatus | sortby:orderbyststus| paginate: { itemsPerPage: 12, currentPage: p, totalItems: totalItems}"
+            #d class="product-base">
+
+            <div class="col-lg-3  col-md-6 col-sm-6 space" [ngClass]="{'cardbig': selectedSize, 'cardsmall': selectedSizea}">
+
+              <div class="card">
+                <a routerLink="/viewdetails/{{product.sL_OFFR_UNT_DTL_BIN}}" (click)="binddetail(product)">
+                  <img class="card-img-top img-responsive center-block" alt="assets/images/1.jpg" src="{{product.Image}}" onError="this.src='assets/images/1.jpg';">
+                </a>
+                <div class="card-block">
+                  <p class="card-text">
+                    City : {{ product.ctY_NAM}}
+                    <br>Depot: {{product.dpT_CD}}
+                    <br/>Size : {{ product.cntnR_SZ_CD }}
+                    <br/>Type : {{ product.cntnR_TYP_CD }}
+                    <br/>Grade : {{ product.sL_CNDTN_NAM }}
+                    <br/> Color : {{ product.clR_CD_NM}}
+
+                  </p>
+                </div>
+                <a routerLink="/viewdetails/{{product.sL_OFFR_UNT_DTL_BIN}}" (click)="binddetail(product)">
+                  <div class="overlay"></div>
+                </a>
+                <div class="button">
+                  <a routerLink="/viewdetails/{{product.sL_OFFR_UNT_DTL_BIN}}" (click)="binddetail(product)">View</a>
+                </div>
+              </div>
+            </div>
+          </div>
+          <br>
+        </div>
+        <div class="row paginationrow paginationdesktop">
+          <div *ngIf="number_container != 0" class="text-right">
+            <pagination-controls (pageChange)="p = $event"></pagination-controls>
+          </div>
+        </div>
+        <div class="row">
+          <div *ngIf="number_container == null" class="loading">
+            <img src="assets/images/loading3.gif">
+          </div>
+
+        </div>
+      </div>
+    </div>
+  </div>
+</div>
+
+
+
+
+
+<div class="mobileview">
+  <div class="row navbar-default heading">
+    <!-- Total no of container, sort by, filter  -->
+    <div class="row head">
+      <div class="col-sm-6">
+        <span class="pull-left">
+          <strong> {{ (container_detail | containerfilter:selectedfilter)?.length }}</strong> results
+        </span>
+      </div>
+      <div class="col-sm-6 ">
+        <div class="pull-right">
+          <button class="btn btn-mobile" type="button" (click)="openModal(template)">
+            <span class="glyphicon glyphicon-tasks">&nbsp;Filter</span>
+          </button>&nbsp;
+
+          <button class="btn btn-mobile" type="button" (click)="openModal(sortfiltermobile)">
+            <div *ngIf="sortfilterlist == null" class="pull-left">
+              <span class="glyphicon glyphicon-sort">&nbsp;SortBy</span>
+            </div>
+            <div *ngIf="sortfilterlist != null" class="pull-left">
+              <span class="glyphicon glyphicon-sort" (click)="sort('sortfilterlist')">&nbsp;{{sortfilterlist}}</span>
+            </div>
+          </button>&nbsp;
+        </div>
+      </div>
+    </div>
+  </div>
+  <div class="container-fluid">
+
+    <div class="row product">
+      <div class="col-sm-12  col-md-12">
+
+        <!-- Container List -->
+        <div class="row">
+          <div *ngIf="container_detail.length == 0">
+            <div class="" style="font-size:50px;"> No containers available</div>
+          </div>
+          <div class="row" style="text-align:center">
+            <div class="col-sm-12" style="font-size: 10px">
+              <div class="pagnationmobile">
+                <div *ngIf="number_container != 0">
+                  <pagination-controls (pageChange)="p = $event"></pagination-controls>
+                </div>
+              </div>
+            </div>
+            <div *ngFor="let product of  container_detail | orderBy: orderby:orderstatus | sortby:orderbyststus| paginate: { itemsPerPage: 16, currentPage: p, totalItems: totalItems}"
+              #d class="product-base">
+              <div class="col-sm-12" [ngClass]="{'cardbig': selectedSize, 'cardsmall': selectedSizea}">
+                <div class="card" [@containeranmiate]>
+                  <a routerLink="/viewdetails/{{product.sL_OFFR_UNT_DTL_BIN}}" (click)="binddetail(product)">
+                    <img class="card-img-top img-responsive center-block" alt="{{product.cntnR_SZ_CD}}" src="{{product.Image}}" onError="this.src='assets/images/1.jpg';"
+                      alt="...">
+                  </a>
+                  <div class="card-block">
+                    <div class="row">
+                      <div class="col-xs-9">
+                        <p class="card-text text-left">
+                          Size:{{product.cntnR_SZ_CD}}
+                          <br/>Type:{{ product.cntnR_TYP_CD }}
+                          <br/>Grade : {{ product.sL_CNDTN_NAM }}
+                          <br/> Color: {{ product.clR_CD_NM}}
+                        </p>
+                      </div>
+                      <div class="col-xs-3 col-sm-2 col-md-2 nopadding">
+                        <div class="card-footer" style="margin: 17px auto">
+                          <a routerLink="/viewdetails/{{product.sL_OFFR_UNT_DTL_BIN}}" (click)="binddetail(product)" class="btn btn-info btn-md" style="font-size:10px">
+                            View </a>
+                        </div>
+                      </div>
+                    </div>
+                  </div>
+                </div>
+              </div>
+              <br>
+            </div>
+            <div class="row" style="text-align:center">
+              <div class="col-sm-12" style="font-size: 10px;overflow: hidden; ">
+                <div class="pagnationmobile">
+                  <div *ngIf="number_container != 0">
+                    <pagination-controls (pageChange)="p = $event"></pagination-controls>
+                  </div>
+                </div>
+              </div>
+              <br>
+              <br>
+              <br>
+              <br>
+              <br>
+
+
+              <div class="row">
+                <!-- <div *ngIf="loadingstatus  == false" class="loading">
+                  <img src="assets/images/loading3.gif">
+                </div> -->
+
+              </div>
+            </div>
+          </div>
+        </div>
+      </div>
+    </div>
+
+    <!-- Filter popup -->
+    <ng-template #template class="mobileview">
+      <div class="modal-header">
+        <div *ngIf=toggler>
+          <h4 class="modal-title algcenter">Filters</h4>
+        </div>
+        <div *ngIf=!toggler>
+          <h4 class="modal-title algcenter">{{mobFilterTitle}}</h4>
+        </div>
+        <h4 class="modal-title pull-right 	glyphicon glyphicon-refresh" (click)="clearfilter()" *ngIf="selectedfilter !=0 " (click)="toggleback()"></h4>
+        <span class="glyphicon glyphicon-remove close pull-left" (click)="modalRef.hide()" *ngIf=toggler></span>
+        <span class="glyphicon glyphicon-menu-left close pull-left" style="color: white" (click)="toggleback()" *ngIf=!toggler></span>
+        <!-- <span class="glyphicon glyphicon-remove close pull-right" (click)="modalRef.hide()" *ngIf=!toggler></span> -->
+      </div>
+      <div class="modal-body">
+        <div *ngIf=toggler>
+
+          <h4 class="headingmobile" (click)="togglefilter('Country')">
+            <strong>Country</strong>
+            <span class="pull-right">
+              <span class="glyphicon glyphicon-menu-right"></span>
+            </span>
+            <hr>
+          </h4>
+          <h4 class="headingmobile" (click)="togglefilter('City')">
+            <strong>City</strong>
+            <span class="pull-right">
+              <span class="glyphicon glyphicon-menu-right"></span>
+            </span>
+            <hr>
+          </h4>
+          <h4 class="headingmobile" (click)="togglefilter('Depot')">
+            <strong>Depot</strong>
+            <span class="pull-right">
+              <span class="glyphicon glyphicon-menu-right"></span>
+            </span>
+            <hr>
+          </h4>
+          <h4 class="headingmobile" (click)="togglefilter('SaleCondition')">
+            <strong>Sale Condition</strong>
+            <span class="pull-right">
+              <span class="glyphicon glyphicon-menu-right"></span>
+            </span>
+            <hr>
+          </h4>
+          <h4 class="headingmobile" (click)="togglefilter('ContainerType')">
+            <strong>Container Type</strong>
+            <span class="pull-right">
+              <span class="glyphicon glyphicon-menu-right"></span>
+            </span>
+            <hr>
+          </h4>
+          <h4 class="headingmobile" (click)="togglefilter('ContainerSize')">
+            <strong>Container Size</strong>
+            <span class="pull-right">
+              <span class="glyphicon glyphicon-menu-right"></span>
+            </span>
+            <hr>
+          </h4>
+          <h4 class="headingmobile" (click)="togglefilter('ColourCode')">
+            <strong>Colour Code</strong>
+            <span class="pull-right">
+              <span class="glyphicon glyphicon-menu-right"></span>
+            </span>
+            <hr>
+          </h4>
+        </div>
+        <!-- Secound popup for filter popup -->
+        <div *ngIf=!toggler>
+          <div class="filter-box">
+            <div *ngFor="let option of optionslist; let j=index">
+              <div class="form-check vertical-filters-label common-customCheckbox">
+                <label>
+                  <input class="checkbox-success" type="checkbox" #cb1 value="{{option.fltNm}}" (change)="slectCkBox(mobFilterTitle,option.fltNm,cb1)"
+                    [checked]="selectedfilter.indexOf(option.fltNm)>-1">
+                  <span class="label-text fnt-14">{{option.fltNm}}</span>
+                  <span class="label-text containercount">({{option.avlUnt}})</span>
+                </label>
+              </div>
+            </div>
+          </div>
+        </div>
+      </div>
+      <div class="modal-footer algcenter">
+        <button type="button" class="btn btn-info btn-sm" (click)="modalRef.hide()" *ngIf=!toggler>close</button>
+      </div>
+    </ng-template>
+
+    <!-- Sort By popup -->
+    <ng-template #sortfiltermobile class="mobileview">
+      <div class="modal-header">
+        <h4 class="modal-title algcenter">Sort By</h4>
+        <span class="glyphicon glyphicon-remove close pull-left" (click)="modalRef.hide()" *ngIf=toggler></span>
+        <span class="glyphicon glyphicon-menu-left close pull-left" (click)="toggleback()" *ngIf=!toggler></span>
+      </div>
+      <div class="modal-body">
+        <div *ngFor="let item of dropdownList | orderBy;">
+          <div (click)="modalRef.hide()" (click)="sortfilter(item.itemName, $event)">
+            {{item.itemName}}
+          </div>
+        </div>
+      </div>
+    </ng-template>
+  </div>
+</div>

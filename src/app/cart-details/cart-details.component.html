@@ -1,0 +1,181 @@
+<div class="desktopview">
+  <div class="navbar navbar-dark bg-primary headers">
+    <div class="row head">
+      <div class="col-xs-8 col-lg-8">
+        <h4 class="pull-left">My Cart({{cartCount}})</h4>
+      </div>
+      <div class="col-xs-4 col-lg-4">
+        <a routerLink="/buycontainer" class="pull-right" style="color:aliceblue">
+          <h4>Back</h4>
+        </a>
+      </div>
+    </div>
+  </div>
+  <div class="background">
+  <div class="container-fluid" id="ex4">
+
+    <!-- Container -->
+    <div class="main" >
+
+      <div class="col-xs-12 col-sm-12 col-lg-12">
+        <div class="riAgLt">
+          <div class="TFpAof">
+            <!-- react-empty: 2237 -->
+            <!-- react-empty: 2238 -->
+
+            <div *ngFor="let item of cartList | paginate: { itemsPerPage: 4, currentPage: p, totalItems: totalItems}">
+            <div class="contents">
+              <div class="_3ycxrs" data-aid="Cart-item-row_LSTACCEU5Z7KB8ZQJD4JXYJAR">
+                <div class="col-xs-12 col-sm-12 col-lg-12">
+
+                  <div class="col-xs-12 col-sm-6 col-md-6 col-lg-6">
+
+                    <div class="text-center">
+                      <img class="card-img-top img-responsive center-block" alt="tt" src="{{item.Image}}" onError="this.src='assets/images/1.jpg';">
+                    </div>
+
+                  </div>
+                  <div class="col-xs-12 col-sm-6 col-md-6 col-lg-6">
+                    <div class="_3vIvU_">
+                        <div class="I8hxu4">
+                       Cart date : {{CurrentDate | date: 'dd MMMM yyyy'}}
+                          </div>
+                      <div class="I8hxu4">
+                        Size          : {{item.cntnR_SZ_CD}}
+                      </div>
+
+                      <div class="I8hxu4">
+                        Type          : {{ item.cntnR_TYP_CD }}
+                      </div>
+
+                      <div class="I8hxu4">
+                       Color code    : {{ item.clR_CD_NM}}
+                      </div>
+                      <div class="I8hxu4">
+                          Depot    : {{ item.dpT_NAM}}
+                         </div>
+
+                      <div class="I8hxu4">
+                       Price         : {{ item.sL_PRC_NC }}
+                      </div>
+                      <div class="I8hxu4">
+                        Invoice Amount : {{item.sL_PRC_NC*item.nO_OF_UNTS}}
+                      </div>
+                      <div class="I8hxu4">
+                          Currency : {{item.crrncY_CD}}
+                        </div>
+
+                    </div>
+
+                  </div>
+
+
+                  <!-- <div class="col-xs-12 col-sm-6 col-lg-6">
+                      <div class="_3vIvU_">
+                        <div class="pull-right">
+                          <span>
+                            Cart date : {{CurrentDate | date: 'dd MMMM yyyy'}}
+                          </span>
+                        </div>
+                      </div>
+                    </div> -->
+
+                </div>
+
+                <div class="row cnt_cls">
+                  <div class="col-lg-1"></div>
+                  <div class="col-xs-12 col-sm-12 col-md-8 col-lg-5">
+                    <div class="_3cto0P" >
+                      <div class="_3RkJty" style="padding-left:53px;">
+                        <div class="_3md1dr">
+                          <button (click)="decrement1(item.crT_ID)" class="wNrY5O"> – </button>
+                          <div class="_2zH4zg">
+                            <input [ngModel]="item.nO_OF_UNTS" class="_2csFM9" type="text" id="inc" readonly="readonly">
+                          </div>
+                          <button (click)="increment1(item.avL_UNTS,item.expctD_UNTS,item.nO_OF_UNTS,item.crT_ID)" class="wNrY5O"> + </button>
+                        </div>
+                      </div>
+                      <div class="remove_cls" style="padding-left:20px;">
+                          <span (click)="removeItem(item.crT_ID)">Remove</span>
+                      </div>
+                    </div>
+
+                  </div>
+                  <!-- <div class="col-xs-5 col-sm-6 col-md-3 col-lg-3">
+                    <div class="remove_cls _3cto0P">
+                      <span (click)="removeItem(item.crT_ID)">Remove</span>
+                    </div>
+
+                  </div>
+                  <div class="col-xs-0 col-sm-0 col-lg-7">
+
+                  </div> -->
+                </div>
+              </div>
+            </div>
+          </div>
+
+
+<!-- <div *ngIf="cartList.length>=0"> -->
+          <div class="_2qUgWb _23Wk5T row">
+            <div class="col-xs-12 col-sm-12 col-lg-12">
+              <div class="col-xs-12 col-sm-12 col-lg-0"></div>
+              <div class="col-xs-12 col-sm-12 col-md-12 col-lg-12">
+                <div *ngIf="cartCount>0" class="foot">
+                  <!-- <div class="col-lg-push-4 col-lg-4 col-md-push-3 col-md-4 col-sm-6 col-xs-6 col-xs-push-1 btnmargin">
+                  <a >
+                    <button class="foota btn btn-primary" routerLink="/buycontainer">
+                        <span class="glyphicon glyphicon-shopping-cart"></span>
+                      <span>Continue shopping</span>
+                    </button>
+                  </a>
+                </div>
+                  <div class="col-lg-push-5 col-lg-4 col-md-push-3 col-md-4 col-sm-6 col-xs-6 col-xs-push-1 btnmargin">
+                  <a >
+                    <button class="footb btn btn-success" (click)="addToSaleCart()">
+                        <span class="glyphicon glyphicon-ok"></span>
+                      <span>BUY</span>
+                    </button>
+                  </a>
+                </div> -->
+                  <!-- <form method="post" action="/checkout/init">
+                      <input type="hidden" name="domain" value="physical">
+                      <button class="_2AkmmA _14O7kc _7UHT_c" tabindex="30">
+                        <span>Purchase</span>
+                      </button>
+                    </form> -->
+                    <div class="row">
+                      <div class="col-lg-6 col-md-6 col-sm-4 col-xs-0"></div>
+                      <div class="col-lg-6 col-md-6 col-sm-8 col-xs-12">
+                        <div class="btn btn-primary b" routerLink="/buycontainer">
+                          <span class="glyphicon glyphicon-shopping-cart"></span>
+                          <span>Continue shopping</span>
+                        </div>
+                        <div class="btn btn-success b" (click)="addToSaleCart()">
+                          <span class="glyphicon glyphicon-ok"></span>
+                          <span>Buy</span>
+                        </div>
+                      </div>
+                    </div>
+                </div>
+                <div *ngIf="cartCount<=0" class="norecord">
+                  <h3>Your Shopping cart is empty</h3>
+                </div>
+              </div>
+            </div>
+          </div>
+        
+            <!-- close if --> 
+        </div>
+      </div>
+    </div>
+  </div>
+  <!-- <div *ngIf="cartList.length>=0"> -->
+  <div  *ngIf="cartCount>0" class="row paginationrow paginationmobile" >
+      <!-- <div *ngIf="number_container != 0" class="pull-left"> -->
+      <pagination-controls (pageChange)="p = $event"></pagination-controls>
+      <!-- </div> -->
+  </div>
+    <!-- </div> -->
+</div>
+</div>

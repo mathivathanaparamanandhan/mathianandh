@@ -1,0 +1,199 @@
+<mat-sidenav-container class="example-container">
+    <mat-sidenav #sidenav [mode]="mode.value" id="ex">
+            <a (click)="sidenav.toggle()" class="btn btn-primary cross">
+                <span class="glyphicon glyphicon-backward"></span>
+            </a>
+        <div class="well">
+         
+                <div class="well hidden-md hidden-lg">               
+                                <p>
+                                    <span class="panel panel-info panel-heading d-flex p-2">Users</span>
+                                </p>
+                                <ul class="nav nav-pills nav-stacked">
+                                    <li>
+                                        <a  [ngClass]="{'tabstatus': pending === true }" href="#tab_a"  data-toggle="pill" (click)="getUsers_staus('pending')">Pending</a>
+                                    </li>
+                                    <li>
+                                        <a [ngClass]="{'tabstatus': approved === true }" href="#tab_a" data-toggle="pill" (click)="getUsers_staus('approved')">Approved</a>
+                                    </li>
+                                    <li>
+                                        <a [ngClass]="{'tabstatus': rejected === true }" href="#tab_a" data-toggle="pill" (click)="getUsers_staus('rejected')">Rejected</a>
+                                    </li>
+                                    <li>
+                                        <a [ngClass]="{'tabstatus': locked === true }" href="#tab_a" data-toggle="pill" (click)="getUsers_staus('locked')">Locked</a>
+                                    </li>
+                                    <li>
+                                        <a [ngClass]="{'tabstatus': deactivate === true }" href="#tab_a" data-toggle="pill" (click)="getUsers_staus('deactivate')">Deactivated</a>
+                                    </li>
+                                </ul>
+                            
+                            </div>
+               
+            <div class="well">
+                <p>
+                    <span class="panel panel-info panel-heading d-flex p-2">Overview</span>
+                </p>
+                <p>
+                    <a class="login-link" routerLink="/overview">Overview-Previous Purchase by users</a>
+                </p>
+            </div>
+            <div class="well">
+                <p>
+                    <span class="panel panel-info panel-heading">Settings</span>
+                </p>
+                <p>
+                    <a routerLink="/adminuserprofile">Admin User Profile</a>
+                </p>
+                <p>
+                    <a href="#">User Settings </a>
+                </p>
+            </div>
+            <div class="well">
+                <p>
+                    <span class="panel panel-default panel-heading d-flex p-3">Pending</span>
+                </p>
+                <p>
+                    <a class="login-link" routerLink="/portaluserprofile">Portal User Profile</a>
+                </p>
+            </div>
+        </div>
+
+
+    </mat-sidenav>
+
+    <mat-sidenav-content>
+        <div class="panel panel-default">
+
+            <div class="panel-heading">Portal User Profile</div>
+            <p>
+                <a (click)="sidenav.toggle()" class="btn btn-primary sharp">
+                    <span class="glyphicon glyphicon-forward"></span>
+                </a>
+            </p>
+            <div class="hidden-xs hidden-sm">
+                <nav class="navbar" style="left:20px;">
+                    <div class="container-fluid">
+                        <ul class="nav nav-pills nav-justified">
+                            <li>
+                                <a  [ngClass]="{'tabstatus': pending === true }" href="#tab_a"  data-toggle="pill" (click)="getUsers_staus('pending')">Pending</a>
+                            </li>
+                            <li>
+                                <a [ngClass]="{'tabstatus': approved === true }" href="#tab_a" data-toggle="pill" (click)="getUsers_staus('approved')">Approved</a>
+                            </li>
+                            <li>
+                                <a [ngClass]="{'tabstatus': rejected === true }" href="#tab_a" data-toggle="pill" (click)="getUsers_staus('rejected')">Rejected</a>
+                            </li>
+                            <li>
+                                <a [ngClass]="{'tabstatus': locked === true }" href="#tab_a" data-toggle="pill" (click)="getUsers_staus('locked')">Locked</a>
+                            </li>
+                            <li>
+                                <a [ngClass]="{'tabstatus': deactivate === true }" href="#tab_a" data-toggle="pill" (click)="getUsers_staus('deactivate')">Deactivated</a>
+                            </li>
+                        </ul>
+                    </div>
+                </nav>
+            </div>
+
+
+            <div class="tab-content col-md-10 col-lg-12">
+                <div class="tab-pane active" id="tab_a">
+                    <div class="table-responsive">
+                        <!-- <table class="table table-striped" [mfData]="data | dataFilter : filterQuery" #mf1="mfDataTable"
+                                            [mfRowsOnPage]="5" [(mfSortBy)]="sortBy" [(mfSortOrder)]="sortOrder">
+                                                <thead>
+                                                    <tr>
+                                                        <th scope="col" style="width: 20%">
+                                                            <mfDefaultSorter by="username">username</mfDefaultSorter>
+                                                        </th>
+                                                        <th scope="col" style="width: 20%">
+                                                            <mfDefaultSorter by="custumername">custumername</mfDefaultSorter>
+                                                        </th>
+                                                        <th scope="col" style="width: 20%">
+                                                            <mfDefaultSorter by="country">country</mfDefaultSorter>
+                                                        </th>
+                                                        <th scope="col" style="width: 10%">
+                                                            <mfDefaultSorter by="status">status</mfDefaultSorter>
+                                                        </th>
+                                                        <th scope="col" style="width: 10%">
+                                                            <mfDefaultSorter by="phoneno">phoneno</mfDefaultSorter>
+                                                        </th>
+                                                        <th scope="col" style="width: 20%">
+                                                            <mfDefaultSorter [by]="sortByWordLength">email</mfDefaultSorter>
+                                                        </th>
+                                                    </tr>
+                                                </thead>
+                                                <tbody *ngFor="let item of mf1.data">
+                                                    <tr *ngIf="item.status=='PENDING'">
+                                                        <td data-label="username">{{item.username}}</td>
+                                                        <td data-label="custumername">{{item.userCustomerName}}</td>
+                                                        <td data-label="country">{{item.userCityName}}</td>
+                                                        <td data-label="status">{{item.status}}</td>
+                                                        <td data-label="phoneno">{{item.userPhoneNo}}</td>
+                                                        <td data-label="email"><a  class="login-link" routerLink="/userdetail" (click)="getdata(item.userID)">{{item.emailID}}</a></td>
+                                                    </tr>
+                                                </tbody>
+                                                <tfoot>
+                                                    <tr>
+                                                        <td colspan="3" >
+                                                            <mfBootstrapPaginator [rowsOnPageSet]="[5,10,15]"></mfBootstrapPaginator>
+                                                        </td>
+                                                    </tr>
+                                                </tfoot>
+                                            </table> -->
+                        <p-table #dt [columns]="cols" [responsive]="true" [value]="cars" selectionMode="single" [(selection)]="selectedCars1" [paginator]="true" paginatorPosition="both"
+                            [rows]="10" dataKey="username" >
+                            <ng-template pTemplate="caption">
+                                <!-- <div style="text-align: right">
+                                    <i class="fa fa-search" style="margin:4px 4px 0 0"></i>
+                                    <input type="text" pInputText size="50" placeholder="Global Filter" (input)="dt.filterGlobal($event.target.value, 'contains')"
+                                        style="width:auto">
+                                </div> -->
+                                <!-- <div class="row" style="padding: 0px;margin: 0px;">
+                                        <div class="form-group has-feedback col-md-push-6 col-md-3 col-sm-push-6 col-sm-6 col-lg-push-9 col-lg-3" style="padding-left: 0px; padding-right: 0px;margin-bottom:0px; ">
+                                            
+                                                <input type="text" class="form-control" placeholder="Global Filter" (input)="dt.filterGlobal($event.target.value, 'contains')"/>
+                                                <i class="glyphicon glyphicon-search form-control-feedback"></i>
+                                        </div>
+                                        </div> -->
+                                        <div class="row" style="padding: 0px;margin: 0px; text-align: right;">
+                                            <div class="form-group col-md-push-6 col-md-6 col-lg-push-6 col-lg-6 col-sm-12 col-xs-12" style="padding-left: 0px; padding-right: 0px;     margin-bottom: 0px;">
+            
+                                                <input type="text" pInputText placeholder="Global Filter" (input)="dt.filterGlobal($event.target.value, 'contains')"
+                                                    style="width:auto;  border: 1px solid lightgrey;">
+                                                <i class="fa fa-search" style="margin:4px 4px 0 0"></i>
+                                            </div>
+                                            </div>
+                            </ng-template>
+                            <ng-template pTemplate="header" let-columns>
+                                <tr>
+
+                                    <th *ngFor="let col of columns" [pSortableColumn]="col.field" >  
+                                        <p-sortIcon [field]="col.field"></p-sortIcon>
+                                        {{col.header}}
+
+                                    </th>
+                                </tr>
+                            </ng-template>
+                            <ng-template pTemplate="body" let-rowData let-columns="columns">
+                                <tr [pSelectableRow]="rowData">
+                                    <td *ngFor="let col of columns" style="word-wrap:break-word;">
+                                        <span class="ui-column-title">{{col.header}}</span>
+
+                                        <span *ngIf="col.header==='Email ID'">
+                                            <a style="color:blue;" routerLink="/userdetail" (click)="getdata(rowData)">{{rowData[col.field]}}</a>
+                                        </span>
+                                        <span *ngIf="col.header!=='Email ID'">{{rowData[col.field]}}</span>
+                                    </td>
+                                </tr>
+                            </ng-template>
+
+                        </p-table>
+                    </div>
+                </div>
+
+            
+            </div>
+        </div>
+
+    </mat-sidenav-content>
+</mat-sidenav-container>
